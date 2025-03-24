@@ -789,3 +789,37 @@ export const faqsData: IFAQType[] = [
       "Morbi porttitor ligula in nunc varius sagittis. Proin dui nisi, laoreet ut tempor ac, cursus vitae eros. Cras quis ultricies elit. Proin ac lectus arcu. Maecenas aliquet vel tellus at accumsan. Donec a eros non massa vulputate ornare. Vivamus ornare commodo ante, at commodo felis congue vitae.",
   },
 ];
+
+export const partnersData = [
+  {
+    name: "steps",
+    icon: "/partners/steps.svg",
+    url: "/",
+  },
+
+  {
+    name: "mango",
+    icon: "/partners/mango.svg",
+    url: "/",
+  },
+  {
+    name: "food",
+    icon: "/partners/food.svg",
+    url: "/",
+  },
+  {
+    name: "steps",
+    icon: "/partners/food-capital.svg",
+    url: "/",
+  },
+  {
+    name: "bookoff",
+    icon: "/partners/bookoff.svg",
+    url: "/",
+  },
+  {
+    name: "gseries",
+    icon: "/partners/gseries.svg",
+    url: "/",
+  },
+];

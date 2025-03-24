@@ -7,6 +7,7 @@ import { CustomerReviewsList } from "@/components/lists/CustomerReviewsList";
 import FeatureProductsList from "@/components/lists/FeatureProductsList";
 import HotDealsList from "@/components/lists/HotDealsList";
 import NewsList from "@/components/lists/NewsList";
+import PartnersList from "@/components/lists/PartnersList";
 import PolicyList from "@/components/lists/PolicyList";
 import PopularProductsList from "@/components/lists/PopularProductsList";
 import PromoFullSizeList from "@/components/lists/PromoFullSizeList";
@@ -155,8 +156,8 @@ export default function Home() {
           </Suspense>
         </div>
       </div>
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 pt-[60px]">
-        Partners
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 py-[60px]">
+        <PartnersList />
       </div>
     </div>
   );
