@@ -37,9 +37,11 @@ import {
   PostFormSchema,
 } from "@/commons/filterValidation";
 
-import { categoryList } from "@/commons/categories";
+// import { categoryList } from "@/commons/categories";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { postTagsList } from "@/commons/tags";
+// import { postTagsList } from "@/commons/tags";
+import { fetchProductCategoryList } from "@/apis/fetchAPI/product";
+import { fetchPostTagList } from "@/apis/fetchAPI/post";
 
 type Schema = z.infer<typeof PostFormSchema>;
 export default function BlogsFilterForm() {
@@ -50,17 +52,17 @@ export default function BlogsFilterForm() {
 
   useEffect(() => {
     const fetchCates = async () => {
-      // const res = await fetchProductCategoryList();;
+      const res = await fetchProductCategoryList();
       // // const data = await res.json();
-      // setCateList(res);
-      setCateList(categoryList);
+      setCateList(res);
+      // setCateList(categoryList);
       setIsCateLoading(false);
     };
     const fetchTags = async () => {
-      // const res = await fetchProductCategoryList();;
+      const res = await fetchPostTagList();;
       // // const data = await res.json();
-      // setCateList(res);
-      setTagList(postTagsList);
+      setTagList(res);
+      // setTagList(postTagsList);
       setIsTagLoading(false);
     };
     fetchCates();

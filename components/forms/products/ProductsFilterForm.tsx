@@ -43,8 +43,9 @@ import {
   RATINGS,
 } from "@/commons/filterValidation";
 // import { fetchProductCategoryList } from "@/apis/fetchAPI/product";
-import { categoryList } from "@/commons/categories";
-import { productTagsList } from "@/commons/tags";
+// import { categoryList } from "@/commons/categories";
+// import { productTagsList } from "@/commons/tags";
+import { fetchProductCategoryList, fetchProductTagList } from "@/apis/fetchAPI/product";
 
 type Schema = z.infer<typeof FilterSchema>;
 
@@ -56,17 +57,17 @@ export default function ProductsFilterForm() {
 
   useEffect(() => {
     const fetchCates = async () => {
-      // const res = await fetchProductCategoryList();;
+      const res = await fetchProductCategoryList();;
       // // const data = await res.json();
-      // setCateList(res);
-      setCateList(categoryList);
+      setCateList(res);
+      // setCateList(categoryList);
       setIsCateLoading(false);
     };
     const fetchTags = async () => {
-      // const res = await fetchProductCategoryList();;
+      const res = await fetchProductTagList();;
       // // const data = await res.json();
-      // setCateList(res);
-      setTagList(productTagsList);
+      setTagList(res);
+      // setTagList(productTagsList);
       setIsTagLoading(false);
     };
     fetchCates();

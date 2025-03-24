@@ -2,9 +2,10 @@
 
 const review = {
   async getReviews() {
-    const res = await fetch(`https://dummyjson.com/c/b4ec-ebfd-4646-8a6f`, {
-      next: { revalidate: 30 },
-    });
+    // const res = await fetch(`https://dummyjson.com/c/b4ec-ebfd-4646-8a6f`, {
+    //   next: { revalidate: 30 },
+    // });
+    const res = await fetch(`https://dummyjson.com/c/b4ec-ebfd-4646-8a6f`);
     return res;
   },
 };

@@ -5,9 +5,10 @@ const user = {
     return res;
   },
   async getUsers() {
-    const res = await fetch(`${apiConfig.user.user}?limit=10`, {
-      next: { revalidate: 30 },
-    });
+    // const res = await fetch(`${apiConfig.user.user}?limit=10`, {
+    //   next: { revalidate: 30 },
+    // });
+    const res = await fetch(`${apiConfig.user.user}?limit=10`);
     return res;
   },
 };

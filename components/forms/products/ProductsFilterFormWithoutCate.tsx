@@ -40,7 +40,8 @@ import {
   MIN_PRICE,
   RATINGS,
 } from "@/commons/filterValidation";
-import { postTagsList } from "@/commons/tags";
+// import { postTagsList } from "@/commons/tags";
+import { fetchProductTagList } from "@/apis/fetchAPI/product";
 
 // const CategoryDetailsFormSchema = z.object({
 //   price: z
@@ -69,10 +70,10 @@ export default function ProductsFilterFormWithoutCate() {
 
   useEffect(() => {
     const fetchTags = async () => {
-      // const res = await fetchProductCategoryList();;
+      const res = await fetchProductTagList();
       // // const data = await res.json();
-      // setCateList(res);
-      setTagList(postTagsList);
+      setTagList(res);
+      // setTagList(postTagsList);
       setIsTagLoading(false);
     };
     fetchTags();

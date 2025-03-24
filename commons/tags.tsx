@@ -1,6 +1,6 @@
-import { fetchPostTagList } from "@/apis/fetchAPI/post";
-import { fetchProductTagList } from "@/apis/fetchAPI/product";
+// import { fetchPostTagList } from "@/apis/fetchAPI/post";
+// import { fetchProductTagList } from "@/apis/fetchAPI/product";
 
-export const productTagsList = await fetchProductTagList();
+// export const productTagsList = await fetchProductTagList();
 
-export const postTagsList = await fetchPostTagList();
+// export const postTagsList = await fetchPostTagList();
