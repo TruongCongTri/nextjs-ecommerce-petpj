@@ -72,3 +72,8 @@ export interface IOrderType {
   total: number;
   paymentMethod: "Paypal" | "MoMo" | "VNPay";
 }
+
+export interface IFAQType {
+  question: string;
+  answer: string;
+}

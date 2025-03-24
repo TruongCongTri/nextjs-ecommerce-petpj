@@ -118,7 +118,7 @@ const CountryDropdownComponent = (
         setSelectedCountries(initialCountry ? [initialCountry] : []);
       }
     }
-  }, [defaultValue, options, multiple]);
+  }, [defaultValue, options, multiple, selectedCountries]);
 
   const handleSelect = useCallback(
     (country: Country) => {
@@ -141,7 +141,7 @@ const CountryDropdownComponent = (
   );
 
   const triggerClasses = cn(
-    "flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 hover:bg-secondary/80",
+    "flex h-10 w-full items-center justify-between whitespace-nowrap rounded-md px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 hover:bg-secondary/80",
     slim === true && "gap-1 w-min",
     inline && "rounded-r-none border-r-0 gap-1 pr-1 w-min",
     className

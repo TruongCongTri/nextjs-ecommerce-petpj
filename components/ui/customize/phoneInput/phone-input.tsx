@@ -154,7 +154,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
     };
 
     const inputClasses = cn(
-      "flex items-center gap-2 relative bg-transparent transition-colors text-base rounded-md border border-input pl-3 h-9 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed md:text-sm has-[input:focus]:outline-none has-[input:focus]:ring-1 has-[input:focus]:ring-ring [interpolate-size:allow-keywords]",
+      "h-10 px-3 py-2 flex items-center gap-2 relative bg-transparent transition-colors text-base rounded-md border border-input shadow-sm disabled:opacity-50 disabled:cursor-not-allowed md:text-sm has-[input:focus]:outline-none has-[input:focus]:ring-1 has-[input:focus]:ring-ring [interpolate-size:allow-keywords]",
       inline && "rounded-l-none w-full",
       className
     );
@@ -180,7 +180,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
           autoComplete="tel"
           name="phone"
           className={cn(
-            "flex w-full border-none bg-transparent text-base transition-colors placeholder:text-muted-foreground outline-none h-9 py-1 p-0 leading-none md:text-sm [interpolate-size:allow-keywords] disabled:cursor-not-allowed disabled:opacity-50",
+            "flex w-full h-10 px-3 py-2 border-none bg-transparent text-base transition-colors placeholder:text-muted-foreground outline-none leading-none md:text-sm [interpolate-size:allow-keywords] disabled:cursor-not-allowed disabled:opacity-50",
             className
           )}
           {...props}

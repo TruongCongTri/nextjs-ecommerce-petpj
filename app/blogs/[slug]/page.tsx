@@ -35,11 +35,11 @@ export default async function SingleBlogPage({
 
   return (
     <div className="container mx-auto px-4 pt-4 pb-10 md:px-6 lg:px-8 lg:pt-8 lg:pb-20 ">
-      <div className="flex gap-6">
-        <div className="basis-full lg:basis-4/5 gap-2 lg:gap-6 space-y-6">
+      <div className="flex gap-12">
+        <div className="basis-full lg:basis-4/5 gap-2 lg:gap-6 space-y-10">
           <Detail post={data} />
           <div className="flex flex-col gap-6">
-            <div>Leave a Comment</div>
+            <div className="font-medium text-2xl">Leave a Comment</div>
             <CommentForm />
           </div>
           <CommentList post={data} />

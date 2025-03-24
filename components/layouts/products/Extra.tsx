@@ -17,7 +17,7 @@ import { IProductType } from "@/models/products";
 import { Separator } from "@/components/ui/separator";
 import { RatingGroup } from "@/components/ui/customize/custom-rating";
 import { Card } from "@/components/ui/card";
-import { Leaf, Tag } from "lucide-react";
+import { CircleCheck, Leaf, Tag } from "lucide-react";
 
 export default function ProductDetailExtra(product: IProductType) {
   // const reviews = customerReviewsData.filter((o) => o.productId === 1);
@@ -49,7 +49,35 @@ export default function ProductDetailExtra(product: IProductType) {
           <div className="lg:w-[640px] lg:max-w-[640px] lg:min-w-[640px]">
             <TabsContent value="descriptions" className="w-full">
               <div className="text-sm font-normal text-muted-foreground mx-auto container py-12 px-2 lg:px-4">
-                <div>{product.description}</div>
+                <div className="mb-5">{product.description}</div>
+
+                <ul className="list-none">
+                  <li>
+                    <div className="flex items-center gap-2 py-2">
+                      <CircleCheck className="size-5 text-primary" />
+                      100 g of fresh leaves provides.
+                    </div>
+                  </li>
+                  <li>
+                    <div className="flex items-center gap-2 py-2">
+                      <CircleCheck className="size-5 text-primary" />
+                      Aliquam ac est at augue volutpat elementum.
+                    </div>
+                  </li>
+                  <li>
+                    <div className="flex items-center gap-2 py-2">
+                      <CircleCheck className="size-5 text-primary" />
+                      Quisque nec enim eget sapien molestie.
+                    </div>
+                  </li>
+                  <li>
+                    <div className="flex items-center gap-2 py-2">
+                      <CircleCheck className="size-5 text-primary" />
+                      Proin convallis odio volutpat finibus posuere.
+                    </div>
+                  </li>
+                </ul>
+                <div className="mt-5">{product.description}</div>
               </div>
             </TabsContent>
             <TabsContent value="addition">

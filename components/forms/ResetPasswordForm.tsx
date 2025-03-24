@@ -64,7 +64,7 @@ export default function ResetPasswordForm() {
                   control={form.control}
                   name="password"
                   render={({ field }) => (
-                    <FormItem className="grid gap-2">
+                    <FormItem className="grid gap-2 flex flex-col justify-top">
                       <FormLabel htmlFor="password">New Password</FormLabel>
                       <FormControl>
                         <PasswordInput
@@ -83,7 +83,7 @@ export default function ResetPasswordForm() {
                   control={form.control}
                   name="confirmPassword"
                   render={({ field }) => (
-                    <FormItem className="grid gap-2">
+                    <FormItem className="grid gap-2 flex flex-col justify-top">
                       <FormLabel htmlFor="confirmPassword">
                         Confirm Password
                       </FormLabel>

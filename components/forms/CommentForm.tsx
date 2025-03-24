@@ -119,7 +119,7 @@ export default function CommentForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isLoading} className="rounded-full px-10">
+        <Button type="submit" disabled={isLoading} className="rounded-full" size="lg">
           Post Comments
         </Button>
       </form>

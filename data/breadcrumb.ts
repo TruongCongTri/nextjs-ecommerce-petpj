@@ -53,4 +53,8 @@ export const breadcrumbConfig = {
     { href: "/", label: "Home" },
     { label: "About Us" },
   ] as BreadCrumbType[],
+  faqs: [
+    { href: "/", label: "Home" },
+    { label: "FAQs" },
+  ] as BreadCrumbType[],
 };

@@ -63,115 +63,106 @@ export default function AccountPage() {
     }
   }, [router, token]);
 
-  return (
-    <>
-      {isLoading ? (
-        <div className="flex flex-col gap-6 basis-full lg:basis-3/4">
-          <div className="flex flex-col lg:flex-row gap-6">
-            <Card className="w-full py-8">
-              <CardContent className="flex flex-col items-center justify-center space-y-2">
-                <Skeleton className="rounded-full size-[120px]" />
-                {/* name */}
-                <Skeleton className="h-6 w-[200px]" />
-                {/* role */}
-                <Skeleton className="h-6 w-[200px]" />
-              </CardContent>
-              <CardFooter className="flex flex-col items-center justify-center space-y-2">
-                <Skeleton className="h-6 w-[100px]" />
-              </CardFooter>
-            </Card>
-            <Card className="w-full py-8">
-              <CardHeader className="flex flex-col space-y-2 justify-center items-center text-center lg:justify-start lg:items-start lg:text-start">
-                {/* billing */}
-                <Skeleton className="h-6 w-[100px]" />
-              </CardHeader>
-              <CardContent className="flex flex-col space-y-2 justify-center items-center text-center lg:justify-start lg:items-start lg:text-start">
-                {/* address */}
-                <Skeleton className="h-6 w-[250px]" />
-                {/* email */}
-                <Skeleton className="h-6 w-[200px]" />
-              </CardContent>
-              <CardFooter className="flex flex-col space-y-2 justify-center items-center text-center lg:justify-start lg:items-start lg:text-start">
-                <Skeleton className="h-6 w-[100px]" />
-              </CardFooter>
-            </Card>
-          </div>
-          <Card className="w-full h-full"></Card>
+  if (isLoading)
+    return (
+      <div className="flex flex-col gap-6 basis-full lg:basis-3/4">
+        <div className="flex flex-col lg:flex-row gap-6">
+          <Card className="w-full py-8">
+            <CardContent className="flex flex-col items-center justify-center space-y-2">
+              <Skeleton className="rounded-full size-[120px]" />
+              {/* name */}
+              <Skeleton className="h-6 w-[200px]" />
+              {/* role */}
+              <Skeleton className="h-6 w-[200px]" />
+            </CardContent>
+            <CardFooter className="flex flex-col items-center justify-center space-y-2">
+              <Skeleton className="h-6 w-[100px]" />
+            </CardFooter>
+          </Card>
+          <Card className="w-full py-8">
+            <CardHeader className="flex flex-col space-y-2 justify-center items-center text-center lg:justify-start lg:items-start lg:text-start">
+              {/* billing */}
+              <Skeleton className="h-6 w-[100px]" />
+            </CardHeader>
+            <CardContent className="flex flex-col space-y-2 justify-center items-center text-center lg:justify-start lg:items-start lg:text-start">
+              {/* address */}
+              <Skeleton className="h-6 w-[250px]" />
+              {/* email */}
+              <Skeleton className="h-6 w-[200px]" />
+            </CardContent>
+            <CardFooter className="flex flex-col space-y-2 justify-center items-center text-center lg:justify-start lg:items-start lg:text-start">
+              <Skeleton className="h-6 w-[100px]" />
+            </CardFooter>
+          </Card>
         </div>
-      ) : (
-        <>
-          {isExpired ? (
-            <></>
-          ) : (
-            <div className="flex flex-col gap-6 basis-full lg:basis-3/4">
-              <div className="flex flex-col lg:flex-row gap-6">
-                <Card className="w-full py-8">
-                  <CardContent className="flex flex-col items-center justify-center">
-                    <Avatar className="size-[120px]">
-                      <AvatarImage
-                        src="https://github.com/shadcn.png"
-                        alt="@shadcn"
-                      />
-                      <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      {auth?.firstName} {auth?.maidenName} {auth?.lastName}
-                    </div>
-                    <div>Customer</div>
-                  </CardContent>
-                  <CardFooter className="flex flex-col items-center justify-center">
-                    <Button
-                      asChild
-                      variant="link"
-                      className="text-green-400 dark:text-white"
-                    >
-                      <Link
-                        href={`${siteConfig.accounts.setting}`}
-                        className=""
-                      >
-                        Edit Profile
-                      </Link>
-                    </Button>
-                  </CardFooter>
-                </Card>
-                <Card className="w-full">
-                  <CardHeader className="flex flex-col space-y-2 justify-center items-center text-center lg:justify-start lg:items-start lg:text-start">
-                    Billing Address
-                  </CardHeader>
-                  <CardContent className="flex flex-col space-y-2 justify-center items-center text-center lg:justify-start lg:items-start lg:text-start">
-                    <div>
-                      {auth?.firstName} {auth?.maidenName} {auth?.lastName}
-                    </div>
-                    <div>
-                      {auth?.address.address}, {auth?.address.city},{" "}
-                      {auth?.address.state}, {auth?.address.country}
-                    </div>
-                    <div>{auth?.email}</div>
-                    <div>{auth?.phone}</div>
-                  </CardContent>
-                  <CardFooter className="flex flex-col space-y-2 justify-center items-center text-center lg:justify-start lg:items-start lg:text-start">
-                    <Button
-                      asChild
-                      variant="link"
-                      className="text-green-400 dark:text-white -px-4"
-                    >
-                      <Link
-                        href={`${siteConfig.accounts.setting}`}
-                        className=""
-                      >
-                        Edit Address
-                      </Link>
-                    </Button>
-                  </CardFooter>
-                </Card>
-              </div>
-              <Card className="">
-                <RecentOrderTable />
-              </Card>
+        <Card className="w-full h-full"></Card>
+      </div>
+    );
+  if (isExpired) return <p>token expired...</p>;
+
+  return (
+    <div className="flex flex-col gap-6 basis-full lg:basis-3/4 h-full">
+      <div className="flex flex-col lg:flex-row gap-6">
+        {/* general profile */}
+        <Card className="w-full py-8">
+          <CardContent className="flex flex-col items-center justify-center">
+            <Avatar className="size-[120px]">
+              <AvatarImage src={auth?.image} alt={auth?.image} />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+            <div className="font-medium text-xl">
+              {auth?.firstName} {auth?.maidenName} {auth?.lastName}
             </div>
-          )}
-        </>
-      )}
-    </>
+            <div className="font-normal text-sm text-muted-foreground">
+              Customer
+            </div>
+          </CardContent>
+          <CardFooter className="flex flex-col items-center justify-center">
+            <Button
+              asChild
+              variant="link"
+              className="text-green-400 dark:text-white font-medium text-base"
+            >
+              <Link href={`${siteConfig.accounts.setting}`} className="">
+                Edit Profile
+              </Link>
+            </Button>
+          </CardFooter>
+        </Card>
+        {/* billing address */}
+        <Card className="w-full">
+          <CardHeader className="flex flex-col space-y-2 justify-center items-center text-center lg:justify-start lg:items-start lg:text-start font-medium text-sm text-muted-foreground">
+            Billing Address
+          </CardHeader>
+          <CardContent className="flex flex-col space-y-2 justify-center items-center text-center lg:justify-start lg:items-start lg:text-start">
+            <div className="flex flex-col gap-2">
+              <div className="font-medium text-lg">
+                {auth?.firstName} {auth?.maidenName} {auth?.lastName}
+              </div>
+              <div className="font-normal text-sm text-muted-foreground">
+                {auth?.address.address}, {auth?.address.city},{" "}
+                {auth?.address.state}, {auth?.address.country}
+              </div>
+              <div className="font-normal text-base">{auth?.email}</div>
+              <div className="font-normal text-base">{auth?.phone}</div>
+            </div>
+          </CardContent>
+          <CardFooter className="flex flex-col space-y-2 justify-center items-center text-center lg:justify-start lg:items-start lg:text-start">
+            <Button
+              asChild
+              variant="link"
+              className="text-green-400 dark:text-white -px-4 font-medium text-base"
+            >
+              <Link href={`${siteConfig.accounts.setting}`} className="">
+                Edit Address
+              </Link>
+            </Button>
+          </CardFooter>
+        </Card>
+      </div>
+      <Card className="">
+        <RecentOrderTable userId={auth?.id || 1} />
+      </Card>
+    </div>
   );
 }

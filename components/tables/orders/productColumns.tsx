@@ -1,18 +1,19 @@
 "use client";
 import { ColumnDef } from "@tanstack/react-table";
 
-import { ISingleCartType } from "@/models/types";
+// import { ISingleCartType } from "@/models/types";
+import { ICartProductType } from "@/models/carts";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
-export const productColumns: ColumnDef<ISingleCartType>[] = [
+export const productColumns: ColumnDef<ICartProductType>[] = [
   {
-    accessorKey: "product.name",
+    accessorKey: "title",
     header: "Product",
   },
   {
-    accessorKey: "product.price",
+    accessorKey: "price",
     header: "Price",
   },
   {
@@ -20,7 +21,7 @@ export const productColumns: ColumnDef<ISingleCartType>[] = [
     header: "Quantity",
   },
   {
-    accessorKey: "subTotal",
+    accessorKey: "discountedTotal",
     header: "SubTotal",
   },
 ];

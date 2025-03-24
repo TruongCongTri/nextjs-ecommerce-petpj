@@ -134,7 +134,7 @@ export default function LoginForm() {
                   control={form.control}
                   name="username"
                   render={({ field }) => (
-                    <FormItem className="grid gap-2">
+                    <FormItem className="grid gap-2 flex flex-col justify-top">
                       <FormLabel htmlFor="username">Username</FormLabel>
                       <FormControl>
                         <Input
@@ -154,7 +154,7 @@ export default function LoginForm() {
                   control={form.control}
                   name="password"
                   render={({ field }) => (
-                    <FormItem className="grid gap-2">
+                    <FormItem className="grid gap-2 flex flex-col justify-top">
                       <div className="flex justify-between items-center">
                         <FormLabel htmlFor="password">Password</FormLabel>
                         <Link

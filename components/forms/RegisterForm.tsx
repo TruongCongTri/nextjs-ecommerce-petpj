@@ -77,7 +77,7 @@ export default function RegisterForm() {
                   control={form.control}
                   name="name"
                   render={({ field }) => (
-                    <FormItem className="grid gap-2">
+                    <FormItem className="grid gap-2 flex flex-col justify-top">
                       <FormLabel htmlFor="name">Full Name</FormLabel>
                       <FormControl>
                         <Input id="name" placeholder="John Doe" {...field} />
@@ -91,7 +91,7 @@ export default function RegisterForm() {
                   control={form.control}
                   name="email"
                   render={({ field }) => (
-                    <FormItem className="grid gap-2">
+                    <FormItem className="grid gap-2 flex flex-col justify-top">
                       <FormLabel htmlFor="email">Email</FormLabel>
                       <FormControl>
                         <Input
@@ -112,7 +112,7 @@ export default function RegisterForm() {
                   control={form.control}
                   name="password"
                   render={({ field }) => (
-                    <FormItem className="grid gap-2">
+                    <FormItem className="grid gap-2 flex flex-col justify-top">
                       <FormLabel htmlFor="password">Password</FormLabel>
                       <FormControl>
                         <PasswordInput
@@ -131,7 +131,7 @@ export default function RegisterForm() {
                   control={form.control}
                   name="confirmPassword"
                   render={({ field }) => (
-                    <FormItem className="grid gap-2">
+                    <FormItem className="grid gap-2 flex flex-col justify-top">
                       <FormLabel htmlFor="confirmPassword">
                         Confirm Password
                       </FormLabel>

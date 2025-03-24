@@ -140,7 +140,12 @@ export default function ContactForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isLoading} className="">
+        <Button
+          type="submit"
+          disabled={isLoading}
+          className="rounded"
+          size="lg"
+        >
           Send Message
         </Button>
       </form>

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import {  useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   Select,
   SelectContent,
@@ -21,7 +21,11 @@ import { Button } from "@/components/ui/button";
 import { SlidersHorizontalIcon } from "lucide-react";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import BlogsFilterForm from "./BlogsFilterForm";
-import { DEFAULT_PAGE, DEFAULT_PER_PAGE_BLOG } from "@/commons/filterValidation";
+import {
+  DEFAULT_PAGE,
+  DEFAULT_PER_PAGE_BLOG,
+  DEFAULT_SORT,
+} from "@/commons/filterValidation";
 
 export default function BlogsFilterHeader({
   numberOfPosts,
@@ -35,7 +39,7 @@ export default function BlogsFilterHeader({
   const tagParams = searchParams.getAll("tag") || "";
   const queryParam = searchParams.get("query") || "";
 
-  const sortParam = searchParams.get("sort") || "default";
+  const sortParam = searchParams.get("sort") || DEFAULT_SORT;
   // const currentPageParam = searchParams.get("page") || "1";
   // const perPageParam = searchParams.get("perPage") || "5";
 
@@ -101,7 +105,9 @@ export default function BlogsFilterHeader({
         </Drawer>
 
         <div className="flex items-center gap-2">
-          <div className="hidden lg:grid capitalize">Sort by:</div>
+          <div className="hidden lg:grid capitalize text-sm font-normal text-muted-foreground">
+            Sort by:
+          </div>
           {/* <Select onValueChange={(e) => handleValue(e)} defaultValue={sortParam}> */}
           <Select
             onValueChange={(e) => handleValue(e)}
@@ -117,9 +123,11 @@ export default function BlogsFilterHeader({
           </Select>
         </div>
       </div>
-      <div className="flex items-center gap-2">
-        <div>{numberOfPosts}</div>
-        <div className="capitalize">Results Found</div>
+      <div className="flex items-center gap-2 ">
+        <div className="text-base font-semibold">{numberOfPosts}</div>
+        <div className="capitalize text-sm font-normal text-muted-foreground">
+          Results Found
+        </div>
       </div>
     </div>
   );

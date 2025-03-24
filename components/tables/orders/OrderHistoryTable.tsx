@@ -4,19 +4,23 @@ import React, { useEffect, useState } from "react";
 import { DataTable } from "@/components/tables/commons/data-table";
 
 import { orderColumns } from "./orderColumns";
-import { ordersData } from "@/data/data";
+// import { ordersData } from "@/data/data";
 import { deleteCookie, getCookie } from "cookies-next";
 import { siteConfig } from "@/data/site";
 import { useRouter } from "next/navigation";
 import { IUserType } from "@/models/authorization";
-import { IOrderFetch } from "@/models/orders";
+// import { IOrderFetch } from "@/models/orders";
+// import apis from "@/apis";
+import { ICartType } from "@/models/carts";
+import { LoadingSpinner } from "@/components/icons/loading-icon";
 
 export default function OrderHistoryTable() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isExpired, setIsExpired] = useState(false);
   const [auth, setAuth] = useState<IUserType>();
-  const [cart, setCart] = useState<IOrderFetch>();
+  const [isCartLoading, setIsCartLoading] = useState(false);
+  const [cart, setCart] = useState<ICartType[]>([]);
   const token = getCookie("token");
 
   useEffect(() => {
@@ -42,21 +46,25 @@ export default function OrderHistoryTable() {
           const authData = await authRes.json();
           setAuth(authData);
           setIsExpired(false);
-
+          setIsLoading(false);
+          setIsCartLoading(true);
           const fetchCarts = async () => {
+            // const cartsRes = await apis.cart.getCartsByUser(auth?.id || 1);
             const cartsRes = await fetch(
-              `https://dummyjson.com/carts/${auth?.id}`,
-              {
-                method: "GET",
-              }
+              `https://dummyjson.com/carts` +
+                `?skip=0` +
+                `&limit=0` +
+                `&sortBy=id&order=desc`
             );
             if (!cartsRes.ok) {
               console.log(`error getting carts data`);
-              setIsLoading(false);
+              setIsCartLoading(false);
             } else {
               const cartData = await cartsRes.json();
-              setCart(cartData);
-              setIsLoading(false);
+              console.log(cartData);
+
+              setCart(cartData.carts);
+              setIsCartLoading(false);
             }
           };
           fetchCarts();
@@ -69,11 +77,63 @@ export default function OrderHistoryTable() {
       router.push(`${siteConfig.authorization.login}`);
       setIsLoading(false);
       setIsExpired(true);
+      setIsCartLoading(false);
       deleteCookie("token");
     }
   }, [router, token]);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isExpired) return router.push(`${siteConfig.authorization.login}`);
-  return <DataTable columns={orderColumns} data={ordersData} />;
+  // if (isLoading) return <p>Loading...</p>;
+  // if (isExpired) return <p>Token expired...</p>;
+  if (isLoading)
+    return (
+      <div className="w-full py-6 flex justify-center">
+        <LoadingSpinner />
+      </div>
+    );
+  if (isExpired)
+    return (
+      <div className="w-full py-6 flex justify-center">
+        <LoadingSpinner />
+      </div>
+    );
+  if (!auth)
+    return (
+      <div className="w-full py-6 flex justify-center">
+        <LoadingSpinner />
+      </div>
+    );
+  if (isCartLoading)
+    return (
+      <div className="w-full py-6 flex justify-center">
+        <LoadingSpinner />
+      </div>
+    );
+  return (
+    // <>
+    //   {isLoading ? (
+    //     <p>Loading</p>
+    //   ) : (
+    //     <>
+    //       {isExpired ? (
+    //         <p>token expired</p>
+    //       ) : (
+    //         <>
+    //           {isCartLoading ? (
+    //             <p>Cart loading</p>
+    //           ) : (
+    <>
+      <div className="flex justify-between items-center px-6 py-4">
+        <div className="capitalize font-medium text-xl">Order History</div>
+      </div>
+      <div className="px-6">
+        <DataTable columns={orderColumns} data={cart} />
+      </div>
+    </>
+    //           )}
+    //         </>
+    //       )}
+    //     </>
+    //   )}
+    // </>
+  );
 }

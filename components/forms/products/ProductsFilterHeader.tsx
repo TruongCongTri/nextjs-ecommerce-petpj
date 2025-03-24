@@ -111,7 +111,9 @@ export default function ProductsFilterHeader({
         </Drawer>
 
         <div className="flex items-center gap-2">
-          <div className="hidden lg:grid capitalize text-sm font-normal text-muted-foreground">Sort by:</div>
+          <div className="hidden lg:grid capitalize text-sm font-normal text-muted-foreground">
+            Sort by:
+          </div>
           {/* <Select onValueChange={(e) => handleValue(e)} defaultValue={sortParam}> */}
           <Select
             onValueChange={(e) => handleValue(e)}
@@ -127,9 +129,11 @@ export default function ProductsFilterHeader({
           </Select>
         </div>
       </div>
-      <div className="flex items-center gap-2 text-base font-semibold">
-        <div>{numberOfProds}</div>
-        <div className="capitalize text-muted-foreground">Results Found</div>
+      <div className="flex items-center gap-2 ">
+        <div className="text-base font-semibold">{numberOfProds}</div>
+        <div className="capitalize text-sm font-normal text-muted-foreground">
+          Results Found
+        </div>
       </div>
     </div>
   );

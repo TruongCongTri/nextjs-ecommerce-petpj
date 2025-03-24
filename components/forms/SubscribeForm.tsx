@@ -49,7 +49,7 @@ export default function SubscribeForm() {
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem className="grid gap-2">
+              <FormItem className="grid gap-2 flex flex-col justify-top">
                 <FormLabel htmlFor="email" hidden>
                   Email
                 </FormLabel>

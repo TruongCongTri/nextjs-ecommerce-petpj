@@ -7,8 +7,23 @@ const cart = {
     return res;
   },
 
-  async getCartsByUser(userId: number) {
-    const res = await fetch(`${apiConfig.cart.cartByUser}/${userId}`);
+  async getCarts(skip?: number, limit?: number) {
+    const res = await fetch(
+      `${apiConfig.cart.carts}` +
+        `?${skip ? `skip=${skip}` : "skip=0"}` +
+        `&${limit ? `limit=${limit}` : `limit=0`}` +
+        `&sortBy=id&order=desc`
+    );
+    return res;
+  },
+
+  async getCartsByUser(userId: number, skip?: number, limit?: number) {
+    const res = await fetch(
+      `${apiConfig.cart.cartByUser}/${userId}` +
+        `?${skip ? `skip=${skip}` : "skip=0"}` +
+        `&${limit ? `limit=${limit}` : `limit=0`}` +
+        `&sortBy=id&order=desc`
+    );
     return res;
   },
 

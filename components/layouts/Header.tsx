@@ -6,7 +6,7 @@ import { Separator } from "../ui/separator";
 
 export default function Header() {
   return (
-    <header className="">
+    <header className="w-full sticky top-0 z-50 bg-background">
       <HeaderAuthorization />
       <div className="container px-4 md:px-6 lg:px-8 mx-auto">
         <Separator />

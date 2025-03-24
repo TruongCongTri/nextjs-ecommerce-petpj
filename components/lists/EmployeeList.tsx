@@ -21,9 +21,9 @@ export async function EmployeeList() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center mb-[50px]">
-        <div>Our Awesome Team</div>
-        <div>
+      <div className="flex flex-col items-center justify-center mb-[50px] gap-3">
+        <div className="font-semibold text-5xl">Our Awesome Team</div>
+        <div className="font-medium text-base text-muted-foreground lg:max-w-[600px] text-center">
           Pellentesque a ante vulputate leo porttitor luctus sed eget eros.
           Nulla et rhoncus neque. Duis non diam eget est luctus tincidunt a a
           mi.

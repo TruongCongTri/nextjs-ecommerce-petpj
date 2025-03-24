@@ -17,6 +17,7 @@ export default function CartPage() {
       </div>
       <div className="container mx-auto lg:px-8 px-4 pt-4 pb-10 md:px-6 lg:px-8 lg:pt-8 lg:pb-20">
         <div className="lg:px-4 ">
+          <div className="font-semibold text-4xl text-center mb-8">My Shopping Cart</div>
           <Suspense fallback={<div>loading...</div>}>
             <ShoppingCartLayout />
           </Suspense>

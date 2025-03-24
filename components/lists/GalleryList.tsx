@@ -1,7 +1,5 @@
 import React from "react";
 
-import { newsData } from "@/data/data";
-
 import {
   CustomImage,
   CustomImageFallback,
@@ -16,16 +14,18 @@ export default function GalleryList() {
         <div className="capitalize">Our Gallery</div>
       </div>
       <div className="grid grid-cols-4 gap-1">
-        {newsData.map((o) => (
-          <div key={o.id}>
-            <CustomImage className="aspect-square w-full rounded-xl max-w-[100px] max-h-[100px]">
-              <CustomImageInput src={o.image} />
-              <CustomImageFallback className="rounded-t-xl">
-                CN
-              </CustomImageFallback>
-            </CustomImage>
-          </div>
-        ))}
+        <CustomImage className="aspect-square w-full rounded-xl max-w-[100px] max-h-[100px]">
+          <CustomImageInput src="" />
+          <CustomImageFallback className="rounded-t-xl">CN</CustomImageFallback>
+        </CustomImage>
+        <CustomImage className="aspect-square w-full rounded-xl max-w-[100px] max-h-[100px]">
+          <CustomImageInput src="" />
+          <CustomImageFallback className="rounded-t-xl">CN</CustomImageFallback>
+        </CustomImage>
+        <CustomImage className="aspect-square w-full rounded-xl max-w-[100px] max-h-[100px]">
+          <CustomImageInput src="" />
+          <CustomImageFallback className="rounded-t-xl">CN</CustomImageFallback>
+        </CustomImage>
       </div>
     </div>
   );

@@ -14,28 +14,28 @@ export default function ContactUsPage() {
           <CardContent className="flex flex-col h-full justify-between ">
             <div className="flex flex-col lg:justify-center items-center gap-4">
               <MapPin className="size-[50px] text-primary" />
-              <div className="flex text-center">{`${addressConfig[0].address}`}</div>
+              <div className="text-center font-normal text-base text-muted-foreground">{`${addressConfig[0].address}`}</div>
             </div>
             <Separator className="my-4" />
             <div className="flex flex-col lg:justify-center items-center gap-4">
               <Mail className="size-[50px] text-primary" />
               <a href={`mailto:${mailConfig[0].mail}`}>
-                <div className="flex text-center">{`${mailConfig[0].mail}`}</div>
+                <div className="text-center font-normal text-base text-muted-foreground">{`${mailConfig[0].mail}`}</div>
               </a>
             </div>
             <Separator className="my-4" />
             <div className="flex flex-col lg:justify-center items-center gap-4">
               <Phone className="size-[50px] text-primary" />
               <a href={`tel:${phoneConfig[0].phone}`}>
-                <div className="flex text-center">{`${phoneConfig[0].phone}`}</div>
+                <div className="text-center font-normal text-base text-muted-foreground">{`${phoneConfig[0].phone}`}</div>
               </a>
             </div>
           </CardContent>
         </Card>
         <Card className="lg:basis-3/4 py-[20px] lg:px-[30px] lg:py-[44px] ">
           <CardContent className="space-y-4">
-            <div>Just Say Hello!</div>
-            <div className="lg:max-w-[500px]">
+            <div className=" text-4xl font-semibold">Just Say Hello!</div>
+            <div className="text-sm font-normal text-muted-foreground lg:max-w-[500px]">
               Do you fancy saying hi to me or you want to get started with your
               project and you need my help? Feel free to contact me.
             </div>

@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { MoveRightIcon } from "lucide-react";
 import { IProductFetch } from "@/models/products";
 import apis from "@/apis";
+import LargeProductCard from "../cards/LargeProductCard";
 
 const fetchProds = async (): Promise<IProductFetch> => {
   const res = await apis.product.getProductsOrderByDiscount(0, 12, 'asc');
@@ -38,7 +39,7 @@ export default async function HotDealsList() {
         {data.products.map((o, idx) =>
           idx === 0 ? (
             <div key={idx} className="lg:col-span-2 lg:row-span-2">
-              <ProductCard {...o} />
+              <LargeProductCard {...o} />
             </div>
           ) : (
             <ProductCard {...o} key={idx} />

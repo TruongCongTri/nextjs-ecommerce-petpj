@@ -5,6 +5,7 @@ import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Dot } from "lucide-react";
 import { Separator } from "../ui/separator";
+import { Button } from "../ui/button";
 
 const fetchComments = async (postId: number): Promise<ICommentFetch> => {
   const data = await apis.comment.getCommentsByPost(postId);
@@ -15,8 +16,8 @@ export default async function CommentList({ post }: { post: IPostType }) {
   const commentsData = await fetchComments(post.id);
 
   return (
-    <div className="">
-      <div>Comments</div>
+    <div className="flex flex-col gap-6">
+      <div className="font-medium text-2xl">Comments</div>
       <div>
         {commentsData.comments.map((o, idx) => (
           <div key={idx} className="my-6">
@@ -27,12 +28,18 @@ export default async function CommentList({ post }: { post: IPostType }) {
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col gap-2">
-                  <div className="flex gap-1">
-                    <div className="capitalize">{o.user.fullName}</div>
+                  <div className="flex items-center gap-1">
+                    <div className="capitalize font-medium text-sm">
+                      {o.user.fullName}
+                    </div>
                     <Dot />
-                    <div>26 Apr 2025</div>
+                    <div className="font-normal text-sm text-muted-foreground">
+                      26 Apr 2025
+                    </div>
                   </div>
-                  <div>{o.body}</div>
+                  <div className="font-normal text-sm text-muted-foreground">
+                    {o.body}
+                  </div>
                 </div>
               </div>
             </div>
@@ -42,6 +49,12 @@ export default async function CommentList({ post }: { post: IPostType }) {
           </div>
         ))}
       </div>
+      <Button
+        className="rounded-full w-[140px] bg-white border border-primary text-primary"
+        size="lg"
+      >
+        Load More
+      </Button>
     </div>
   );
 }

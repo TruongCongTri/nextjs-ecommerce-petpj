@@ -51,7 +51,7 @@ export function PaginationWithLinks({
       newSearchParams.set(key, String(newPage));
       return `${pathname}?${newSearchParams.toString()}`;
     },
-    [searchParams, pathname],
+    [pageSearchParam, searchParams, pathname],
   );
 
   const navToPageSize = useCallback(
@@ -62,7 +62,7 @@ export function PaginationWithLinks({
       newSearchParams.delete(pageSearchParam || "page"); // Clear the page number when changing page size
       router.push(`${pathname}?${newSearchParams.toString()}`);
     },
-    [searchParams, pathname],
+    [pageSizeSelectOptions?.pageSizeSearchParam, searchParams, pageSearchParam, router, pathname],
   );
 
   const renderPageNumbers = () => {

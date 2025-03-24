@@ -1,4 +1,3 @@
-import { JSX, SVGProps } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/data/site";
@@ -26,6 +25,12 @@ import {
   TwitterIcon,
   InstagramIcon,
 } from "lucide-react";
+import {
+  CustomImage,
+  CustomImageFallback,
+  CustomImageInput,
+} from "@/components/ui/customize/custom-image";
+import ProductDetailsControl from "./Control";
 
 export default async function ProductDetailLayout(product: IProductType) {
   // const ratings = product.reviews.map((o) => o.rating);
@@ -48,7 +53,7 @@ export default async function ProductDetailLayout(product: IProductType) {
         // className="flex items-center gap-2 w-full"
         className="grid grid-cols-5 gap-4 flex items-center gap-2 w-full"
       >
-        <div className="hidden md:grid gap-4 h-full">
+        <div className="grid gap-4 h-full">
           <CarouselPrevious className="left-11" />
           <CarouselThumbsContainer className="py-8 h-60 basis-1/4">
             {product.images.map((o, index) => (
@@ -165,45 +170,65 @@ export default async function ProductDetailLayout(product: IProductType) {
         <div className="grid gap-4 py-6">
           <div className="flex justify-between">
             <div className="flex gap-1 items-center">
-              <div className="capitalize text-sm font-normal">
-                Brand: {product.brand}
+              <div className="capitalize text-sm font-normal flex gap-2 items-center">
+                Brand:{" "}
+                {product.brand ? (
+                  product.brand
+                ) : (
+                  <CustomImage className="aspect-square w-full rounded-xl max-w-[56px] max-h-[56px]">
+                    <CustomImageInput src="" />
+                    <CustomImageFallback className="rounded-xl">
+                      CN
+                    </CustomImageFallback>
+                  </CustomImage>
+                )}
               </div>
             </div>
 
-            <div className="flex gap-1 items-center">
+            <div className="flex gap-2 items-center">
               <div className="normal-case text-sm font-normal">Share item:</div>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="bg-gray-100 rounded-full dark:text-black 
-            group-hover:text-green-400 border border-transparent group-hover:border-green-400"
-              >
-                <FacebookIcon className="size-10 " />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="bg-gray-100 rounded-full dark:text-black 
-            group-hover:text-green-400 border border-transparent group-hover:border-green-400"
-              >
-                <TwitterIcon className="size-10 " />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="bg-gray-100 rounded-full dark:text-black 
-            group-hover:text-green-400 border border-transparent group-hover:border-green-400"
-              >
-                <InstagramIcon className="size-10 " />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="bg-gray-100 rounded-full dark:text-black 
-            group-hover:text-green-400 border border-transparent group-hover:border-green-400"
-              >
-                <ShoppingBagIcon className="size-10" />
-              </Button>
+              <div className="flex">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="bg-gray-100 rounded-full border border-transparent 
+            dark:text-white dark:bg-muted
+            hover:text-white hover:bg-primary hover:border-primary 
+            dark:hover:text-white dark:hover:bg-primary dark:hover:border-primary "
+                >
+                  <FacebookIcon className="size-10 " />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="bg-gray-100 rounded-full border border-transparent 
+                  dark:text-white dark:bg-muted
+                  hover:text-white hover:bg-primary hover:border-primary 
+                  dark:hover:text-white dark:hover:bg-primary dark:hover:border-primary "
+                >
+                  <TwitterIcon className="size-10 " />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="bg-gray-100 rounded-full border border-transparent 
+                  dark:text-white dark:bg-muted
+                  hover:text-white hover:bg-primary hover:border-primary 
+                  dark:hover:text-white dark:hover:bg-primary dark:hover:border-primary "
+                >
+                  <InstagramIcon className="size-10 " />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="bg-gray-100 rounded-full border border-transparent 
+                  dark:text-white dark:bg-muted
+                  hover:text-white hover:bg-primary hover:border-primary 
+                  dark:hover:text-white dark:hover:bg-primary dark:hover:border-primary "
+                >
+                  <ShoppingBagIcon className="size-10" />
+                </Button>
+              </div>
             </div>
           </div>
           <p className="text-muted-foreground normal-case text-sm font-normal">
@@ -212,13 +237,76 @@ export default async function ProductDetailLayout(product: IProductType) {
         </div>
         <Separator />
         <div className="grid gap-4 py-6">
-          <div className="flex items-center gap-4">
+          {/* <div className="flex items-center gap-4">
             {product.availabilityStatus === "Out of Stock" ? (
-              <Button size="lg" className="normal-case">
-                Out of stock <ShoppingBagIcon className="size-10" />
+              <div className="flex items-center justify-center border rounded-full w-30 gap-1 px-1">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="w-8 h-8 rounded-full bg-muted hover:bg-primary/90 hover:text-white"
+                  disabled={true}
+                >
+                  <Minus className="w-4 h-4" />
+                  <span className="sr-only">Decrease quantity</span>
+                </Button>
+                <Input 
+                  type="number"
+                  min="1"
+                  max={product.stock}
+                  defaultValue="1"
+                  className="w-4 text-center border-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  disabled={true}
+                />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="w-8 h-8 rounded-full bg-muted hover:bg-primary/90 hover:text-white"
+                  disabled={true}
+                >
+                  <Plus className="w-4 h-4" />
+                  <span className="sr-only">Increase quantity</span>
+                </Button>
+              </div>
+            ) : (
+              <div className="flex items-center justify-center border rounded-full w-30 gap-1 px-1">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="w-8 h-8 rounded-full bg-muted hover:bg-primary/90 hover:text-white"
+                >
+                  <Minus className="w-4 h-4" />
+                  <span className="sr-only">Decrease quantity</span>
+                </Button>
+                <Input
+                  type="number"
+                  min="1"
+                  max={product.stock}
+                  defaultValue="1"
+                  className="w-10 text-center border-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="w-8 h-8 rounded-full bg-muted hover:bg-primary/90 hover:text-white"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span className="sr-only">Increase quantity</span>
+                </Button>
+              </div>
+            )}
+            {product.availabilityStatus === "Out of Stock" ? (
+              <Button
+                size="lg"
+                className="normal-case border border-primary hover:border-primary/90 w-full rounded-full"
+                disabled={true}
+              >
+                Out of stock <X className="size-10" />
               </Button>
             ) : (
-              <Button size="lg" className="normal-case">
+              <Button
+                size="lg"
+                className="normal-case border border-primary hover:border-primary/90 w-full rounded-full"
+              >
                 Add to Cart <ShoppingBagIcon className="size-10" />
               </Button>
             )}
@@ -226,12 +314,15 @@ export default async function ProductDetailLayout(product: IProductType) {
             <Button
               variant="ghost"
               size="icon"
-              className="bg-gray-100 rounded-full dark:text-black 
-            group-hover:text-green-400 border border-transparent group-hover:border-green-400"
+              className="p-5 bg-gray-100 rounded-full border border-gray-100 
+                  dark:text-white dark:bg-muted
+                  hover:text-white hover:bg-primary hover:border-primary 
+                  dark:hover:text-white dark:hover:bg-primary dark:hover:border-primary "
             >
               <HeartIcon className="size-10" />
             </Button>
-          </div>
+          </div> */}
+          <ProductDetailsControl product={product} />
         </div>
         <Separator />
         <div className="grid gap-4 py-6">
@@ -258,24 +349,5 @@ export default async function ProductDetailLayout(product: IProductType) {
         </div>
       </div>
     </div>
-  );
-}
-
-function HeartIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-    </svg>
   );
 }

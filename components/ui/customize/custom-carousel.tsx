@@ -216,6 +216,7 @@ Carousel.displayName = "Carousel";
 const CarouselMainContainer = forwardRef<
   HTMLDivElement,
   {} & React.HTMLAttributes<HTMLDivElement>
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 >(({ className, dir, children, ...props }, ref) => {
   const { mainRef, orientation, direction } = useCarousel();
  
@@ -240,6 +241,7 @@ CarouselMainContainer.displayName = "CarouselMainContainer";
 const CarouselThumbsContainer = forwardRef<
   HTMLDivElement,
   {} & React.HTMLAttributes<HTMLDivElement>
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 >(({ className, dir, children, ...props }, ref) => {
   const { thumbsRef, orientation, direction } = useCarousel();
  
@@ -319,6 +321,7 @@ SliderThumbItem.displayName = "SliderThumbItem";
 const CarouselIndicator = forwardRef<
   HTMLButtonElement,
   { index: number } & React.ComponentProps<typeof Button>
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 >(({ className, index, children, ...props }, ref) => {
   const { activeIndex, onThumbClick } = useCarousel();
   const isSlideActive = activeIndex === index;
@@ -345,6 +348,7 @@ CarouselIndicator.displayName = "CarouselIndicator";
 const CarouselPrevious = forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 >(({ className, dir, variant = "outline", size = "icon", ...props }, ref) => {
   const {
     canScrollNext,
@@ -383,6 +387,7 @@ CarouselPrevious.displayName = "CarouselPrevious";
 const CarouselNext = forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 >(({ className, dir, variant = "outline", size = "icon", ...props }, ref) => {
   const {
     canScrollNext,

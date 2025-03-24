@@ -1,33 +1,68 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
-import { IOrderType } from "@/models/types";
 import { siteConfig } from "@/data/site";
-import { ordersData } from "@/data/data";
 
 import { Button } from "@/components/ui/button";
 import { orderColumns } from "@/components/tables/orders/orderColumns";
-import { DataOnlyTable } from "@/components/tables/commons/data-only-table";
+import { ICartFetch } from "@/models/carts";
 
+import { DataTable } from "../commons/data-table";
+import { LoadingSpinner } from "@/components/icons/loading-icon";
 
+export default function RecentOrderTable({ userId }: { userId: number }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [cart, setCart] = useState<ICartFetch>();
 
-export default function RecentOrderTable() {
-  
+  useEffect(() => {
+    try {
+      const fetchCarts = async () => {
+        const cartsRes = await fetch(
+          `https://dummyjson.com/carts` +
+            `?skip=0` +
+            `&limit=6` +
+            `&sortBy=id&order=desc`
+        );
+        if (!cartsRes.ok) {
+          console.log(`error getting carts data`);
+          setIsLoading(false);
+        } else {
+          const cartData = await cartsRes.json();
+          setCart(cartData);
+          setIsLoading(false);
+        }
+      };
+      fetchCarts();
+    } catch (error) {
+      console.error("error", error);
+      setIsLoading(false);
+    }
+  }, [userId]);
+
+  if (isLoading)
+    return (
+      <p className="w-full flex justify-center py-4">
+        <LoadingSpinner />
+      </p>
+    );
   return (
     <>
-      <div className="flex justify-between items-center px-2 py-4">
-        <div className="capitalize">Recent Order History</div>
+      <div className="flex justify-between items-center px-6 py-4">
+        <div className="capitalize font-medium text-xl">
+          Recent Order History
+        </div>
         <Button
           asChild
           variant="link"
-          className="text-green-400 dark:text-white"
+          className="text-primary dark:text-white font-medium text-base"
         >
-          <Link href={siteConfig.accounts.order} className="">
-            View All
-          </Link>
+          <Link href={siteConfig.accounts.order}>View All</Link>
         </Button>
       </div>
-      {/* <DataOnlyTable columns={orderColumns} data={data} /> */}
+      <div className="px-6">
+        <DataTable columns={orderColumns} data={cart?.carts || []} />
+      </div>
     </>
   );
 }

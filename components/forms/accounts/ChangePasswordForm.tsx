@@ -31,6 +31,7 @@ export default function ChangePasswordForm() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isExpired, setIsExpired] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [auth, setAuth] = useState<IUserType>();
   const [isEdit, setIsEdit] = useState(false);
 
@@ -123,7 +124,7 @@ export default function ChangePasswordForm() {
             <Card>
               <CardHeader className="border-b">
                 <CardTitle className="text-2xl  flex items-center gap-2">
-                  Change Password
+                  <div className="font-medium text-xl">Change Password</div>
                   <Button
                     onClick={() => setIsEdit(true)}
                     className={`mr-auto ${isEdit && "hidden"}`}
@@ -212,7 +213,10 @@ export default function ChangePasswordForm() {
                       {/* btn */}
                       <Button
                         type="submit"
-                        className={`mr-auto ${!isEdit && "hidden"}`}
+                        size="lg"
+                        className={`mr-auto font-semibold text-sm rounded-full ${
+                          !isEdit && "hidden"
+                        }`}
                       >
                         Change Password
                       </Button>

@@ -10,11 +10,6 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import {
-  CustomImage,
-  CustomImageFallback,
-  CustomImageInput,
-} from "@/components/ui/customize/custom-image";
 import { IProductType } from "@/models/types";
 export function ImageCarousel(product: IProductType) {
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);

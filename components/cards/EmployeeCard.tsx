@@ -19,15 +19,17 @@ export default function EmployeeCard(user: IUserType) {
             className=" w-full aspect-square rounded-t-xl"
           />
         </figure>
-        <CardContent className="px-4 py-2">
+        <CardContent className="px-4 py-5">
           <div className="flex justify-between">
             <div>
-              <h3 className="text-lg group-hover:text-green-600">
+              <div className="text-lg font-medium group-hover:text-green-600">
                 <span aria-hidden="true" className="absolute inset-0" />
                 {user.firstName} {user.lastName}
-              </h3>
+              </div>
 
-              <p className="text-lg font-semibold uppercase">{user.role}</p>
+              <p className="font-normal text-sm text-muted-foreground uppercase">
+                {user.role}
+              </p>
             </div>
           </div>
 

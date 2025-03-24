@@ -12,10 +12,10 @@ import { siteConfig } from "@/data/site";
 
 export default function FullWidthPromoCard(promo: IPromoType) {
   return (
-    <Card className="lg:w-[1216px] lg:h-[400px] w-[670px] group relative space-y-4 overflow-hidden ">
+    <Card className="lg:w-[1216px] lg:h-[350px] w-[670px] group relative space-y-4 overflow-hidden ">
       <div className="rounded-xl">
         <figure className="">
-          <div className="text-muted-foreground  absolute top-3 end-3 mx-auto text-white flex flex-col gap-3 justify-center items-left">
+          <div className="text-muted-foreground absolute top-15 end-3 mx-auto text-white flex flex-col gap-3 justify-center items-left">
             <div id="deal-type" className="uppercase font-medium text-base">
               {promo.type}
             </div>
@@ -49,8 +49,8 @@ export default function FullWidthPromoCard(promo: IPromoType) {
             src={`${promo.image ? promo.image : "/images/placeholder.svg"}`}
             alt={promo.title}
             width={1214}
-            height={400}
-            className="object-cover h-[400px] aspect-video rounded-xl"
+            height={350}
+            className="object-cover h-[350px] aspect-video rounded-xl"
           />
         </figure>
       </div>

@@ -78,7 +78,7 @@ const ListItem = React.forwardRef<
     <li>
       <NavigationMenuLink asChild>
         <Link
-          ref={ref}
+          href={`${ref}`}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors text-sm font-medium text-muted-foreground",
             "hover:bg-accent hover:text-primary focus:bg-accent focus:text-primary ",
