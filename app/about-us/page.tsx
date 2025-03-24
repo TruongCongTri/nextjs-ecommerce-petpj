@@ -1,23 +1,23 @@
-import React, { Suspense } from "react";
-import Image from "next/image";
-import { LoadingSpinner } from "@/components/icons/loading-icon";
-import { CustomerReviewsList } from "@/components/lists/CustomerReviewsList";
-import {
-  Check,
-  Headset,
-  Leaf,
-  MoveRightIcon,
-  Package,
-  ShoppingBag,
-  Star,
-  Truck,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { EmployeeList } from "@/components/lists/EmployeeList";
+// import React, { Suspense } from "react";
+// import Image from "next/image";
+// import { LoadingSpinner } from "@/components/icons/loading-icon";
+// import { CustomerReviewsList } from "@/components/lists/CustomerReviewsList";
+// import {
+//   Check,
+//   Headset,
+//   Leaf,
+//   MoveRightIcon,
+//   Package,
+//   ShoppingBag,
+//   Star,
+//   Truck,
+// } from "lucide-react";
+// import { Button } from "@/components/ui/button";
+// import { EmployeeList } from "@/components/lists/EmployeeList";
 export default function AboutUsPage() {
   return (
     <>
-      <div className="container mx-auto px-4 pt-4 pb-10 md:px-6 lg:px-8 lg:py-8 flex flex-col lg:flex-row gap-4">
+      {/* <div className="container mx-auto px-4 pt-4 pb-10 md:px-6 lg:px-8 lg:py-8 flex flex-col lg:flex-row gap-4">
         <div className="flex gap-[58px]">
           <div className="flex flex-col justify-center gap-8">
             <div className="text-6xl font-semibold lg:max-w-[600px]">
@@ -217,7 +217,7 @@ export default function AboutUsPage() {
             <CustomerReviewsList />
           </Suspense>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
