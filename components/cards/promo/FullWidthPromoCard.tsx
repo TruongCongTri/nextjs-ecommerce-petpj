@@ -15,7 +15,7 @@ export default function FullWidthPromoCard(promo: IPromoType) {
     <Card className="lg:w-[1216px] lg:h-[350px] w-[670px] group relative space-y-4 overflow-hidden ">
       <div className="rounded-xl">
         <figure className="">
-          <div className="text-muted-foreground absolute top-15 end-3 mx-auto text-white flex flex-col gap-3 justify-center items-left">
+          <div className="text-muted-foreground absolute top-20 end-3 mx-auto text-white flex flex-col gap-3 justify-center items-left">
             <div id="deal-type" className="uppercase font-medium text-base">
               {promo.type}
             </div>

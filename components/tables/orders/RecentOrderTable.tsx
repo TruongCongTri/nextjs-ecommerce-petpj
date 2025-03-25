@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 
 import { siteConfig } from "@/data/site";
 
@@ -10,8 +9,10 @@ import { ICartFetch } from "@/models/carts";
 
 import { DataTable } from "../commons/data-table";
 import { LoadingSpinner } from "@/components/icons/loading-icon";
+import { useRouter } from "next/navigation";
 
 export default function RecentOrderTable({ userId }: { userId: number }) {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [cart, setCart] = useState<ICartFetch>();
 
@@ -57,7 +58,9 @@ export default function RecentOrderTable({ userId }: { userId: number }) {
           variant="link"
           className="text-primary dark:text-white font-medium text-base"
         >
-          <Link href={siteConfig.accounts.order}>View All</Link>
+          <div onClick={() => router.push(`${siteConfig.accounts.order}`)} className="cursor-pointer">
+            View All
+          </div>
         </Button>
       </div>
       <div className="px-6">

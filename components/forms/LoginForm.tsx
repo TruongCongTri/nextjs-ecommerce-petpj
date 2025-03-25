@@ -30,6 +30,13 @@ import { Input } from "@/components/ui/input";
 import { loginFormSchema } from "@/commons/formValidation";
 import { PasswordInput } from "../ui/customize/inputs/password-input";
 import { siteConfig } from "@/data/site";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip";
+import { MessageCircleQuestion } from "lucide-react";
 
 type Schema = z.infer<typeof loginFormSchema>;
 
@@ -135,7 +142,21 @@ export default function LoginForm() {
                   name="username"
                   render={({ field }) => (
                     <FormItem className="grid gap-2 flex flex-col justify-top">
-                      <FormLabel htmlFor="username">Username</FormLabel>
+                      <FormLabel htmlFor="username">
+                        Username{" "}
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button variant="ghost" size="icon">
+                                <MessageCircleQuestion />
+                              </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>emilys</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </FormLabel>
                       <FormControl>
                         <Input
                           id="username"
@@ -156,7 +177,21 @@ export default function LoginForm() {
                   render={({ field }) => (
                     <FormItem className="grid gap-2 flex flex-col justify-top">
                       <div className="flex justify-between items-center">
-                        <FormLabel htmlFor="password">Password</FormLabel>
+                        <FormLabel htmlFor="password">
+                          Password{" "}
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <Button variant="ghost" size="icon">
+                                  <MessageCircleQuestion />
+                                </Button>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>emilyspass</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                        </FormLabel>
                         <Link
                           href={siteConfig.authorization.forgotPassword}
                           className="ml-auto inline-block text-sm underline"

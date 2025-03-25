@@ -20,6 +20,7 @@ import { CartContext } from "@/contexts/CartContext";
 import { CartItemsList } from "@/contexts/CartContext";
 import React from "react";
 import { Separator } from "../ui/separator";
+import { ScrollArea } from "../ui/scroll-area";
 
 export function CartButton() {
   const { cartItems, clearCart, clearAllCart, getCartQuantity, getCartTotal } =
@@ -99,62 +100,70 @@ export function CartButton() {
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>
-            <SheetTitle><div className="flex items-center">Shopping Cart  ({getCartQuantity()})</div></SheetTitle>
+            <SheetTitle>
+              <div className="flex items-center">
+                Shopping Cart ({getCartQuantity()})
+              </div>
+            </SheetTitle>
           </SheetHeader>
           <div className="max-w-[335px] w-full grid gap-4 py-4">
-            {isCartLoading ? (
-              <div>loading...</div>
-            ) : (
-              <>
-                {cartItems.length !== 0 ? (
-                  cartItems.map((o, idx) => (
-                    // className="flex justify-center items-center"
-                    <div key={idx}>
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-2">
-                          <Image
-                            src={`${
-                              o.thumbnail
-                                ? o.thumbnail
-                                : "/images/placeholder.svg"
-                            }`}
-                            alt={o.thumbnail || "image"}
-                            width={100}
-                            height={100}
-                            className="aspect-square rounded-xl"
-                          />
-                          <div className="flex flex-col gap-2">
-                            <div className="font-normal text-sm">{o.title}</div>
-                            <div className="flex gap-1 items-center">
-                              <div className="font-normal text-sm text-muted-foreground">
-                                {o.quantity}
+            <ScrollArea className="h-[500px] w-full ">
+              {isCartLoading ? (
+                <div>loading...</div>
+              ) : (
+                <>
+                  {cartItems.length !== 0 ? (
+                    cartItems.map((o, idx) => (
+                      // className="flex justify-center items-center"
+                      <div key={idx}>
+                        <div className="flex justify-between items-center">
+                          <div className="flex items-center gap-2">
+                            <Image
+                              src={`${
+                                o.thumbnail
+                                  ? o.thumbnail
+                                  : "/images/placeholder.svg"
+                              }`}
+                              alt={o.thumbnail || "image"}
+                              width={100}
+                              height={100}
+                              className="aspect-square rounded-xl"
+                            />
+                            <div className="flex flex-col gap-2">
+                              <div className="font-normal text-sm">
+                                {o.title}
                               </div>
-                              <X className="size-3" />
-                              <div className="font-semibold text-sm ">
-                                {o.price}
+                              <div className="flex gap-1 items-center">
+                                <div className="font-normal text-sm text-muted-foreground">
+                                  {o.quantity}
+                                </div>
+                                <X className="size-3" />
+                                <div className="font-semibold text-sm ">
+                                  {o.price}
+                                </div>
                               </div>
                             </div>
                           </div>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="rounded-full"
+                            onClick={() => clearCart(o)}
+                          >
+                            <X />
+                          </Button>
                         </div>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="rounded-full"
-                          onClick={() => clearCart(o)}
-                        >
-                          <X />
-                        </Button>
+                        {cartItems.length - 1 !== idx && (
+                          <Separator className="my-3" />
+                        )}
                       </div>
-                      {cartItems.length - 1  !== idx && (
-                        <Separator className="my-3" />
-                      )}
-                    </div>
-                  ))
-                ) : (
-                  <div>Cart is empty</div>
-                )}
-              </>
-            )}
+                    ))
+                  ) : (
+                    <div>Cart is empty</div>
+                  )}
+                </>
+              )}
+            </ScrollArea>
           </div>
           <SheetFooter className="absolute bottom-6 max-w-[335px] w-full">
             <div className="w-full flex flex-col">

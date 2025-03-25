@@ -79,7 +79,7 @@ export default function HeaderAuthorization() {
         <div>
           <CountrySlimSelector />
         </div>
-        <ModeToggle  />
+        <ModeToggle />
         <div className="ml-auto flex gap-2">
           <Separator orientation="vertical" />
           {!token ? (
@@ -125,8 +125,11 @@ export default function HeaderAuthorization() {
                   </Link>
                 </div>
               ) : (
-                <div className="flex gap-1 font-normal text-xs text-muted-foreground">
-                  <Link href={`${siteConfig.accounts.dashboard}`}>
+                <div className="flex gap-1 items-center font-normal text-xs text-muted-foreground">
+                  <Link
+                    href={`${siteConfig.accounts.dashboard}`}
+                    className="flex gap-1 underline-offset-4 hover:underline"
+                  >
                     Welcome back{" "}
                     {isLoading ? (
                       <Skeleton></Skeleton>
@@ -136,6 +139,8 @@ export default function HeaderAuthorization() {
                       </div>
                     )}
                   </Link>
+
+                  <Slash className="size-4" />
                   <Button
                     onClick={logout}
                     variant="link"

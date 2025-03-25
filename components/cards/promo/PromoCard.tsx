@@ -15,14 +15,14 @@ export default function PromoCard(promo: IPromoType) {
       <div className="rounded-xl">
         <figure className="">
           <div className="absolute inset-x-0 top-[35px] mx-auto text-white flex flex-col gap-4 justify-center items-center">
-            <div id="deal-type" className="uppercase text-sm font-medium">
+            <div id="deal-type" className="uppercase text-sm font-medium text-center">
               {promo.type}
             </div>
-            <div id="tittle" className="capitalize text-[40px] font-semibold">
+            <div id="tittle" className="capitalize text-[40px] font-semibold text-center">
               {promo.title}
             </div>
 
-            <div id="content" className="flex gap-1 normal-case">
+            <div id="content" className="flex gap-1 normal-case  text-center">
               {promo.description}
             </div>
             <Button

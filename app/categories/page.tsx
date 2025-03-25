@@ -3,7 +3,6 @@ import ProductsFilterHeader from "@/components/forms/products/ProductsFilterHead
 import FiltersProductsList from "@/components/lists/FilterProductsList";
 import ProductsPagination from "@/components/forms/products/ProductsPagination";
 
-import { promosData } from "@/data/data";
 import PromoCard from "@/components/cards/promo/PromoCard";
 import ProductsFilterForm from "@/components/forms/products/ProductsFilterForm";
 import { Separator } from "@/components/ui/separator";
@@ -20,6 +19,13 @@ import { filterProducts } from "@/utils/filterFunction";
 import { fetchProducts } from "@/apis/fetchAPI/product";
 import { LoadingSpinner } from "@/components/icons/loading-icon";
 import { Skeleton } from "@/components/ui/skeleton";
+import { IPromoFetch } from "@/models/promos";
+import apis from "@/apis";
+
+const fetchPromos = async (): Promise<IPromoFetch> => {
+  const data = await apis.promo.getPromos();
+  return data.json();
+};
 
 export default async function CategoriesPage({
   searchParams,
@@ -64,6 +70,17 @@ export default async function CategoriesPage({
     tag
   );
 
+  const promoData = await fetchPromos();
+
+  let i = 0;
+  const singlePromo = promoData.promotions.filter((o) => {
+    if (i <= 3) {
+      if (o.size === "medium") {
+        i++;
+        return o;
+      }
+    }
+  });
   return (
     <div className="container mx-auto px-4 pt-4 pb-10 md:px-6 lg:px-8 lg:pt-8 lg:pb-20 ">
       <div className="flex gap-6">
@@ -84,7 +101,7 @@ export default async function CategoriesPage({
               </div>
             }
           >
-            <PromoCard {...promosData[0]} />
+            <PromoCard {...singlePromo[0]} />
           </Suspense>
           <Separator />
           <Suspense
