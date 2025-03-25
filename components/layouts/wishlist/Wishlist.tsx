@@ -226,13 +226,23 @@ export default function WishlistLayout() {
                       </td>
                       <td>
                         <div className="px-6 justify-end items-center flex gap-6">
-                          <Button
-                            size="lg"
-                            className="rounded-full "
-                            onClick={() => addToCart(o)}
-                          >
-                            Add to cart
-                          </Button>
+                          {o.availabilityStatus === "Out of Stock" ? (
+                            <Button
+                              size="lg"
+                              className="rounded-full "
+                              disabled={true}
+                            >
+                              Out of Stock
+                            </Button>
+                          ) : (
+                            <Button
+                              size="lg"
+                              className="rounded-full "
+                              onClick={() => addToCart(o)}
+                            >
+                              Add to cart
+                            </Button>
+                          )}
                           <Button
                             variant="outline"
                             size="icon"

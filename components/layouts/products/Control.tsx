@@ -23,49 +23,23 @@ export default function ProductDetailsControl({
       setValue(value - 1);
     }
   };
-
   const [isLoading, setIsLoading] = useState(false);
   const { addToCart } = React.useContext(CartContext) as CartItemsList;
 
-  async function onSubmit() {
+  const onSubmit = async () => {
     try {
       setIsLoading(true);
-
-      // const res = await fetch("https://dummyjson.com/carts/add", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({
-      //     userId: 1,
-      //     products: [
-      //       {
-      //         id: 144,
-      //         quantity: value,
-      //       },
-      //     ],
-      //   }),
-      // });
-
-      // if (!res.ok) {
-      //   console.log("Error", res);
-      //   toast.error("Oops! Fail to Add to Cart.");
-
-      //   setIsLoading(false);
-      //   return console.error(res);
-      // }
-      // toast(
-      //   <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-      //     <code className="text-white">{JSON.stringify(value, null, 2)}</code>
-      //   </pre>
-      // );
-      const cart: ICartProductType = product;
-      cart.quantity = value;
-      addToCart(cart);
+      const cart: ICartProductType = {
+        ...product,
+        quantity: await value,
+      };
+      addToCart(await cart);
       setIsLoading(false);
     } catch (error) {
       console.error("error", error);
       setIsLoading(false);
     }
-  }
+  };
   return (
     <div className="flex items-center gap-4">
       {product.availabilityStatus === "Out of Stock" ? (

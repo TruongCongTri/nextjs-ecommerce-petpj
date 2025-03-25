@@ -23,8 +23,7 @@ export default function AddToFavButton({
   async function onSubmit() {
     try {
       setIsLoading(true);
-      const fav: ICartProductType = product;
-      fav.quantity = qtt;
+      const fav: ICartProductType = { ...product, quantity: await qtt };
       addToFav(fav);
       setIsLoading(false);
     } catch (error) {
@@ -41,7 +40,11 @@ export default function AddToFavButton({
           group-hover:opacity-100 group-hover:border-gray-200
           hover:border-primary hover:bg-primary hover:text-white
           dark:text-black 
-          ${isLarge ? ' top-2/3 left-6 transform -translate-x-1/2 -translate-y-1/2' : ' top-3 end-3 '}`}
+          ${
+            isLarge
+              ? " top-2/3 left-6 transform -translate-x-1/2 -translate-y-1/2"
+              : " top-3 end-3 "
+          }`}
       onClick={onSubmit}
       disabled={isLoading}
     >

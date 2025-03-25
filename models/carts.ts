@@ -2,7 +2,7 @@ import { IData } from "./general";
 import { IProductType } from "./products";
 
 export interface ICartProductType extends IProductType {
-  quantity?: number;
+  quantity: number;
   total?: number;
   // discountPercentage: number;
   discountedTotal?: number;

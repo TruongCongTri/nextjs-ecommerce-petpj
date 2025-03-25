@@ -6,8 +6,9 @@ import { toast } from "sonner";
 
 export type CartItemsList = {
   cartItems: ICartProductType[];
+  increaseCart: (item: ICartProductType) => void;
+  decreaseCart: (item: ICartProductType) => void;
   addToCart: (item: ICartProductType) => void;
-  removeFromCart: (item: ICartProductType) => void;
   clearCart: (item: ICartProductType) => void;
   clearAllCart: () => void;
   getCartTotal: () => number;
@@ -49,13 +50,13 @@ const CartProvider: React.FC<{ children: React.ReactNode }> = ({
               cartItem // if the item is already in the cart, increase the quantity of the item
             ) =>
               cartItem.id === item.id
-                ? { ...cartItem, quantity: (cartItem.quantity || 1) + 1 }
+                ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
                 : cartItem // otherwise, return the cart item
           )
         );
-        toast.success(`Successfully update cart`);
+        toast.success(`Successfully add ${item.title} to cart`);
       } else {
-        setCartItems([...cartItems, { ...item, quantity: 1 }]); // if the item is not in the cart, add the item to the cart
+        setCartItems([...cartItems, { ...item, quantity: item.quantity }]); // if the item is not in the cart, add the item to the cart
         toast.success(`Successfully add ${item.title} to cart`);
       }
     } catch (error) {
@@ -65,8 +66,39 @@ const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     // console.log(cartItems);
   };
 
-  const removeFromCart = (item: ICartProductType) => {
+  const increaseCart = (item: ICartProductType) => {
     try {
+      console.log("increase cart");
+      // check if the item is already in the cart
+      const isItemInCart = cartItems.find(
+        (cartItem) => cartItem.id === item.id
+      );
+      if (isItemInCart) {
+        setCartItems(
+          cartItems.map(
+            (
+              cartItem // if the item is already in the cart, increase the quantity of the item
+            ) =>
+              cartItem.id === item.id
+                ? { ...cartItem, quantity: cartItem.quantity + 1 }
+                : cartItem // otherwise, return the cart item
+          )
+        );
+        toast.success(`Successfully update cart`);
+      } else {
+        setCartItems([...cartItems, { ...item, quantity: 1 }]); // if the item is not in the cart, add the item to the cart
+        toast.success(`Successfully increase ${item.title} quantity`);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(`Fail to increase ${item.title}`);
+    }
+    // console.log(cartItems);
+  };
+
+  const decreaseCart = (item: ICartProductType) => {
+    try {
+      console.log("decrease cart");
       const isItemInCart = cartItems.find(
         (cartItem) => cartItem.id === item.id
       );
@@ -77,7 +109,7 @@ const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         setCartItems(
           cartItems.map((cartItem) =>
             cartItem.id === item.id
-              ? { ...cartItem, quantity: (cartItem.quantity || 1) - 1 }
+              ? { ...cartItem, quantity: cartItem.quantity - 1 }
               : cartItem
           )
         );
@@ -116,16 +148,13 @@ const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const getCartTotal = () => {
     return cartItems.reduce(
-      (total, item) => total + item.price * (item.quantity || 1),
+      (total, item) => total + item.price * item.quantity,
       0
     );
   };
 
   const getCartQuantity = () => {
-    return cartItems.reduce(
-      (totalQtt, item) => totalQtt + (item.quantity || 1),
-      0
-    );
+    return cartItems.reduce((totalQtt, item) => totalQtt + item.quantity, 0);
   };
 
   useEffect(() => {
@@ -147,8 +176,9 @@ const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     <CartContext.Provider
       value={{
         cartItems,
+        increaseCart,
+        decreaseCart,
         addToCart,
-        removeFromCart,
         clearCart,
         clearAllCart,
         getCartTotal,

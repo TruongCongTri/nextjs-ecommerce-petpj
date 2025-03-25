@@ -21,8 +21,11 @@ export default function AddToCartButton({
   async function onSubmit() {
     try {
       setIsLoading(true);
-      const cart: ICartProductType = product;
-      cart.quantity = qtt;
+      const productQtt = await qtt;
+      const cart: ICartProductType = {
+        ...product,
+        quantity: productQtt,
+      };
       addToCart(cart);
       setIsLoading(false);
     } catch (error) {

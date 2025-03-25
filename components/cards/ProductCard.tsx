@@ -12,6 +12,8 @@ import AddToCartButton from "../buttons/AddToCartButton";
 import AddToFavButton from "../buttons/AddToFavButton";
 
 export default function ProductCard(product: IProductType) {
+
+  
   return (
     <Card className="lg:w-[240px] w-[190px] group relative space-y-4 overflow-hidden ">
       <div className="group-hover:border-green-400 border border-gray-300 rounded-xl">

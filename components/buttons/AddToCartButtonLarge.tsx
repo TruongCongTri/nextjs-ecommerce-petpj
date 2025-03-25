@@ -8,7 +8,7 @@ import { CartItemsList } from "@/contexts/CartContext";
 import { IProductType } from "@/models/products";
 import { ICartProductType } from "@/models/carts";
 
-export default function AddToCartButton({
+export default function AddToCartButtonLarge({
   product,
   qtt,
 }: {
@@ -21,9 +21,10 @@ export default function AddToCartButton({
   async function onSubmit() {
     try {
       setIsLoading(true);
-
-      const cart: ICartProductType = product;
-      cart.quantity = qtt;
+      const cart: ICartProductType = {
+        ...product,
+        quantity: await qtt,
+      };
       addToCart(cart);
       setIsLoading(false);
     } catch (error) {

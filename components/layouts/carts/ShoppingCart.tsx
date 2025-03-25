@@ -28,8 +28,8 @@ import {
 export default function ShoppingCartLayout() {
   const {
     cartItems,
-    addToCart,
-    removeFromCart,
+    increaseCart,
+    decreaseCart,
     clearCart,
     clearAllCart,
     getCartQuantity,
@@ -273,7 +273,7 @@ export default function ShoppingCartLayout() {
                               variant="ghost"
                               size="icon"
                               className="w-6 h-6 hover:bg-muted"
-                              onClick={() => removeFromCart(o)}
+                              onClick={() => decreaseCart(o)}
                             >
                               <Minus className="w-4 h-4" />
                               <span className="sr-only">Decrease quantity</span>
@@ -285,7 +285,7 @@ export default function ShoppingCartLayout() {
                               variant="ghost"
                               size="icon"
                               className="w-6 h-6 hover:bg-muted"
-                              onClick={() => addToCart(o)}
+                              onClick={() => increaseCart(o)}
                             >
                               <Plus className="w-4 h-4" />
                               <span className="sr-only">Increase quantity</span>

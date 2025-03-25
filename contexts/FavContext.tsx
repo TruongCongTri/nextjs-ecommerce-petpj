@@ -15,6 +15,7 @@ const FavProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [favItems, setFavItems] = React.useState<ICartProductType[]>([]);
 
   const addToFav = (item: ICartProductType) => {
+    console.log("add product to fav");
     // check if the item is already in the fav
     const isItemInFav = favItems.find((favItem) => favItem.id === item.id);
 
@@ -27,6 +28,7 @@ const FavProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   };
 
   const removeFromFav = (item: ICartProductType) => {
+    console.log("remove product from fav");
     const isItemInFav = favItems.find((favItem) => favItem.id === item.id);
 
     if (isItemInFav) {
