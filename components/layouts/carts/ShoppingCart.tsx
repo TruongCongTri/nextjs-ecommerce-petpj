@@ -103,10 +103,12 @@ export default function ShoppingCartLayout() {
 
   return (
     <main className="flex flex-col lg:flex-row lg:justify-between gap-6 md:gap-8 ">
-      <div className="flex-1">
-        <Card>
-          <CardContent className="-p-6">
-            {/* {isLoading ? (
+      {cartItems.length !== 0 ? (
+        <>
+          <div className="flex-1">
+            <Card>
+              <CardContent className="-p-6">
+                {/* {isLoading ? (
               <div>loading</div>
             ) : (
               <>
@@ -204,10 +206,7 @@ export default function ShoppingCartLayout() {
                 )}
               </>
             )} */}
-            <>
-              {cartItems.length === 0 ? (
-                <div>Cart is empty</div>
-              ) : (
+
                 <table className="w-full text-left border-collapse">
                   <thead>
                     <tr>
@@ -325,109 +324,111 @@ export default function ShoppingCartLayout() {
                     ))}
                   </tbody>
                 </table>
+              </CardContent>
+              {cartItems.length !== 0 && (
+                <CardFooter className="py-4 px-6 border-t">
+                  <div className="flex flex-col gap-4 w-full">
+                    <div className="flex justify-end w-full">
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className="hover:bg-primary hover:text-white"
+                              onClick={clearAllCart}
+                            >
+                              <Trash />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Remove all from Shopping Cart</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
+                    <div className="w-full flex justify-between items-center">
+                      <Button
+                        variant="outline"
+                        className="rounded-full bg-accent hover:bg-primary hover:text-white"
+                        size="lg"
+                        // onClick={clearAllCart}
+                        onClick={() => router.push(siteConfig.proxy.shop)}
+                      >
+                        Return to shop
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="rounded-full bg-accent hover:bg-primary hover:text-white"
+                        size="lg"
+                        // onClick={clearAllCart}
+                      >
+                        Update Cart
+                      </Button>
+                    </div>
+                  </div>
+                </CardFooter>
               )}
-            </>
-          </CardContent>
-          {cartItems.length !== 0 && (
-            <CardFooter className="py-4 px-6 border-t">
-              <div className="flex flex-col gap-4 w-full">
-                <div className="flex justify-end w-full">
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="outline"
-                          size="icon"
-                          className="hover:bg-primary hover:text-white"
-                          onClick={clearAllCart}
-                        >
-                          <Trash />
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Remove all from Shopping Cart</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                </div>
-                <div className="w-full flex justify-between items-center">
+            </Card>
+          </div>
+          <div className="w-full lg:w-80">
+            <Card>
+              <CardHeader>
+                <CardTitle>
+                  <div className="font-normal text-xl">Shopping Total</div>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <>
+                  <div className="flex items-center justify-between py-3">
+                    <div className="font-normal text-sm text-muted-foreground">
+                      Subtotal:
+                    </div>
+                    <div className="font-medium text-sm">
+                      {cartItems.length !== 0 && getCartQuantity()}
+                    </div>
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-between py-3">
+                    <div className="font-normal text-sm text-muted-foreground">
+                      Subtotal:
+                    </div>
+                    <div className="font-medium text-sm">
+                      {cartItems.length !== 0 && getCartQuantity()}
+                    </div>
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-between py-3">
+                    <div className="font-normal text-base text-muted-foreground">
+                      Subtotal
+                    </div>
+                    <div className="font-medium text-sm">
+                      {cartItems.length !== 0 &&
+                        Intl.NumberFormat("en-US", {
+                          style: "currency",
+                          currency: "USD",
+                        }).format(getCartTotal())}
+                    </div>
+                  </div>
+                </>
+              </CardContent>
+              {cartItems.length !== 0 && (
+                <CardFooter>
                   <Button
-                    variant="outline"
-                    className="rounded-full bg-accent hover:bg-primary hover:text-white"
-                    size="lg"
-                    // onClick={clearAllCart}
-                    onClick={() => router.push(siteConfig.proxy.shop)}
+                    className="w-full"
+                    disabled={isLoading || cartItems.length === 0}
+                    onClick={() => router.push(siteConfig.accounts.checkOut)}
                   >
-                    Return to shop
+                    Proceed to Checkout
                   </Button>
-                  <Button
-                    variant="outline"
-                    className="rounded-full bg-accent hover:bg-primary hover:text-white"
-                    size="lg"
-                    // onClick={clearAllCart}
-                  >
-                    Update Cart
-                  </Button>
-                </div>
-              </div>
-            </CardFooter>
-          )}
-        </Card>
-      </div>
-      <div className="w-full lg:w-80">
-        <Card>
-          <CardHeader>
-            <CardTitle>
-              <div className="font-normal text-xl">Shopping Total</div>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <>
-              <div className="flex items-center justify-between py-3">
-                <div className="font-normal text-sm text-muted-foreground">
-                  Subtotal:
-                </div>
-                <div className="font-medium text-sm">
-                  {cartItems.length !== 0 && getCartQuantity()}
-                </div>
-              </div>
-              <Separator />
-              <div className="flex items-center justify-between py-3">
-                <div className="font-normal text-sm text-muted-foreground">
-                  Subtotal:
-                </div>
-                <div className="font-medium text-sm">
-                  {cartItems.length !== 0 && getCartQuantity()}
-                </div>
-              </div>
-              <Separator />
-              <div className="flex items-center justify-between py-3">
-                <div className="font-normal text-base text-muted-foreground">
-                  Subtotal
-                </div>
-                <div className="font-medium text-sm">
-                  {cartItems.length !== 0 &&
-                    Intl.NumberFormat("en-US", {
-                      style: "currency",
-                      currency: "USD",
-                    }).format(getCartTotal())}
-                </div>
-              </div>
-            </>
-          </CardContent>
-          {cartItems.length !== 0 && (
-            <CardFooter>
-              <Button
-                className="w-full"
-                disabled={isLoading || cartItems.length === 0}
-                onClick={() => router.push(siteConfig.accounts.checkOut)}
-              >
-                Proceed to Checkout
-              </Button>
-            </CardFooter>
-          )}
-        </Card>
-      </div>
+                </CardFooter>
+              )}
+            </Card>
+          </div>
+        </>
+      ) : (
+        <div className="py-[80px] flex items-center justify-center">Cart is empty</div>
+      )}
     </main>
   );
 }

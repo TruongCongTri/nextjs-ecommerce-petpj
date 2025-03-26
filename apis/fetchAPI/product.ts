@@ -1,5 +1,6 @@
 import { IProductFetch } from "@/models/products";
 import apis from "..";
+import { ICategoryType } from "@/models/categories";
 
 export const fetchProducts = async (
   skip?: number,
@@ -17,6 +18,11 @@ export const fetchProductsByCate = async (
   order?: string
 ): Promise<IProductFetch> => {
   const res = await apis.product.getProductsByCate(slug, limit, skip, order);
+  return res.json();
+};
+
+export const fetchProductCategories = async (): Promise<ICategoryType[]> => {
+  const res = await apis.category.getCategories();
   return res.json();
 };
 

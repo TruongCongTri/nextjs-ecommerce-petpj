@@ -24,7 +24,6 @@ import {
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { NavItem } from "@/commons/navigation";
 import { SearchDialog } from "../forms/SearchForm";
-import { categoriesData, productsData } from "@/data/data";
 
 import { CartButton } from "../buttons/CartButton";
 
@@ -96,7 +95,7 @@ export default function HeaderMain({ items }: { items: NavItem[] }) {
         </Link>
       </div>
       {/* <SearchForm /> */}
-      <SearchDialog categories={categoriesData} products={productsData} />
+      <SearchDialog  />
       <div className="flex gap-2">
         <Button variant="ghost" size="icon" >
           <Link href={siteConfig.accounts.wishlist}>

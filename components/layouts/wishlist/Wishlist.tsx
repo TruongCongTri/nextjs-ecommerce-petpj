@@ -91,10 +91,14 @@ export default function WishlistLayout() {
 
   return (
     <main className="flex flex-col lg:flex-row lg:justify-between gap-6 md:gap-8 ">
-      <div className="flex-1">
-        <Card>
-          <CardContent className="-p-6">
-            {/* {isLoading ? (
+      {favItems.length !== 0 ? (
+        <div className="flex-1">
+        {favItems.length === 0 ? (
+          <div>Wishlist is empty</div>
+        ) : (
+          <Card>
+            <CardContent className="-p-6">
+              {/* {isLoading ? (
               <div>loading</div>
             ) : (
               <>
@@ -162,9 +166,7 @@ export default function WishlistLayout() {
                 )}
               </>
             )} */}
-            {favItems.length === 0 ? (
-              <div>Wishlist is empty</div>
-            ) : (
+
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr>
@@ -257,33 +259,36 @@ export default function WishlistLayout() {
                   ))}
                 </tbody>
               </table>
+            </CardContent>
+            {favItems.length !== 0 && (
+              <CardFooter className="py-4 px-6 border-t">
+                <div className="w-full flex justify-end">
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          className="hover:bg-primary/70 hover:text-white"
+                          onClick={clearAllFav}
+                        >
+                          <Trash />
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Remove all from Wishlist</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+              </CardFooter>
             )}
-          </CardContent>
-          {favItems.length !== 0 && (
-            <CardFooter className="py-4 px-6 border-t">
-              <div className="w-full flex justify-end">
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="hover:bg-primary/70 hover:text-white"
-                        onClick={clearAllFav}
-                      >
-                        <Trash />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Remove all from Wishlist</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-            </CardFooter>
-          )}
-        </Card>
+          </Card>
+        )}
       </div>
+      ) : (
+        <div className="py-[80px] flex items-center justify-center">Wishlist is empty</div>
+      )} 
     </main>
   );
 }
