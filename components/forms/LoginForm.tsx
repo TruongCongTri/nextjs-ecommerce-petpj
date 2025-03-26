@@ -116,7 +116,7 @@ export default function LoginForm() {
       //   }
       // }
       setIsLoading(false);
-      console.log("Success!");
+      console.log("Successfully login");
     } catch (error) {
       console.error("Form submission error", error);
       toast.error("Failed to submit the form. Please try again.");
@@ -212,7 +212,7 @@ export default function LoginForm() {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" disabled={isLoading} className="w-full">
+                <Button type="submit" disabled={isLoading || !form.formState.isValid} className="w-full">
                   Login
                 </Button>
                 <Button variant="outline" className="w-full">

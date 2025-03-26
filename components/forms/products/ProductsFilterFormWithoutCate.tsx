@@ -131,14 +131,14 @@ export default function ProductsFilterFormWithoutCate() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <Button type="submit" className="rounded-full w-full">
+        <Button type="submit" className="rounded-full" size="lg">
           Filter <SlidersHorizontalIcon />
         </Button>
         <FormField
           control={form.control}
           name="price"
           render={({ field: { value, onChange } }) => (
-            <FormItem className="">
+            <FormItem className=" w-full flex flex-col justify-top">
               <Collapsible
                 className="w-full space-y-5"
                 open={openPrice}
@@ -193,7 +193,7 @@ export default function ProductsFilterFormWithoutCate() {
           control={form.control}
           name="rating"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className=" w-full flex flex-col justify-top">
               <Collapsible
                 className="w-full space-y-5"
                 open={openRating}
@@ -243,7 +243,7 @@ export default function ProductsFilterFormWithoutCate() {
           control={form.control}
           name="tags"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className=" w-full flex flex-col justify-top">
               <Collapsible
                 className="w-full space-y-5"
                 open={openTag}

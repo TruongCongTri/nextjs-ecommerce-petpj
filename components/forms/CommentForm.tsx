@@ -57,10 +57,8 @@ export default function CommentForm() {
             control={form.control}
             name="name"
             render={({ field }) => (
-              <FormItem className="grid gap-2 w-full ">
-                <FormLabel htmlFor="name">
-                  Full Name
-                </FormLabel>
+              <FormItem className="grid gap-2 w-full flex flex-col justify-top">
+                <FormLabel htmlFor="name">Full Name</FormLabel>
                 <FormControl>
                   <Input
                     id="name"
@@ -79,10 +77,8 @@ export default function CommentForm() {
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem className="grid gap-2 w-full ">
-                <FormLabel htmlFor="email">
-                  Email
-                </FormLabel>
+              <FormItem className="grid gap-2 w-full flex flex-col justify-top">
+                <FormLabel htmlFor="email">Email</FormLabel>
                 <FormControl>
                   <Input
                     id="email"
@@ -103,10 +99,8 @@ export default function CommentForm() {
           control={form.control}
           name="message"
           render={({ field }) => (
-            <FormItem className="grid gap-2">
-              <FormLabel htmlFor="message">
-                Message
-              </FormLabel>
+            <FormItem className="grid gap-2 w-full flex flex-col justify-top">
+              <FormLabel htmlFor="message">Message</FormLabel>
               <FormControl>
                 <Textarea
                   id="message"
@@ -119,7 +113,12 @@ export default function CommentForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isLoading} className="rounded-full" size="lg">
+        <Button
+          type="submit"
+          disabled={isLoading || !form.formState.isValid}
+          className="rounded-full"
+          size="lg"
+        >
           Post Comments
         </Button>
       </form>

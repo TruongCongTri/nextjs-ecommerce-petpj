@@ -493,7 +493,7 @@ export default function CheckOutLayout() {
                         type="submit"
                         className="w-full rounded-full"
                         size="lg"
-                        disabled={isLoading || cartItems.length === 0}
+                        disabled={isLoading || cartItems.length === 0 || !form.formState.isValid}
                       >
                         Place Order
                       </Button>

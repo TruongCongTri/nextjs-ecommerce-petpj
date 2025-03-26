@@ -197,14 +197,14 @@ export function CartButton() {
               <div className="flex flex-col justify-between items-center gap-2 w-full">
                 <Button
                   className="w-full rounded-full"
-                  disabled={isCartLoading}
+                  disabled={isCartLoading || cartItems.length === 0}
                   onClick={() => router.push(siteConfig.accounts.checkOut)}
                 >
                   Checkout
                 </Button>
                 <Button
                   className="w-full rounded-full"
-                  disabled={isCartLoading}
+                  disabled={isCartLoading || cartItems.length === 0}
                   onClick={() => router.push(siteConfig.accounts.cart)}
                 >
                   Go to Cart

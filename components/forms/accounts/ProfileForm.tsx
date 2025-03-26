@@ -181,7 +181,7 @@ export default function ProfileForm() {
                           control={form.control}
                           name="firstName"
                           render={({ field }) => (
-                            <FormItem className="grid gap-2">
+                            <FormItem className="grid gap-2 w-full flex flex-col justify-top">
                               <FormLabel htmlFor="fistName">
                                 First Name
                               </FormLabel>
@@ -202,7 +202,7 @@ export default function ProfileForm() {
                           control={form.control}
                           name="lastName"
                           render={({ field }) => (
-                            <FormItem className="grid gap-2">
+                            <FormItem className="grid gap-2 w-full flex flex-col justify-top">
                               <FormLabel htmlFor="lastName">
                                 Last Name
                               </FormLabel>
@@ -224,7 +224,7 @@ export default function ProfileForm() {
                             control={form.control}
                             name="email"
                             render={({ field }) => (
-                              <FormItem className="grid gap-2 w-full">
+                              <FormItem className="grid gap-2 w-full flex flex-col justify-top">
                                 <FormLabel htmlFor="email">Email</FormLabel>
                                 <FormControl>
                                   <Input
@@ -243,7 +243,7 @@ export default function ProfileForm() {
                             control={form.control}
                             name="phone"
                             render={({ field }) => (
-                              <FormItem className="grid gap-2 w-full">
+                              <FormItem className="grid gap-2 w-full flex flex-col justify-top">
                                 <FormLabel htmlFor="phone">Phone</FormLabel>
                                 <FormControl>
                                   <PhoneInput
@@ -281,7 +281,7 @@ export default function ProfileForm() {
                           control={form.control}
                           name="image"
                           render={({ field }) => (
-                            <FormItem className="grid gap-2">
+                            <FormItem className="grid gap-2 w-full flex flex-col justify-top">
                               <VisuallyHidden>
                                 <FormLabel htmlFor="image">Avatar</FormLabel>
                               </VisuallyHidden>
@@ -290,7 +290,7 @@ export default function ProfileForm() {
                                   id="image"
                                   placeholder="insert image url"
                                   {...field}
-                                  disabled={!isEdit || isLoading}
+                                  disabled={!isEdit || isLoading || !form.formState.isValid}
                                 />
                               </FormControl>
                               <FormMessage />

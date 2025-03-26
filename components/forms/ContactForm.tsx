@@ -57,7 +57,7 @@ export default function ContactForm() {
             control={form.control}
             name="name"
             render={({ field }) => (
-              <FormItem className="grid gap-2 w-full ">
+              <FormItem className="grid gap-2 w-full flex flex-col justify-top">
                 <FormLabel htmlFor="name" hidden>
                   Name
                 </FormLabel>
@@ -79,7 +79,7 @@ export default function ContactForm() {
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem className="grid gap-2 w-full ">
+              <FormItem className="grid gap-2 w-full flex flex-col justify-top">
                 <FormLabel htmlFor="email" hidden>
                   Email
                 </FormLabel>
@@ -102,7 +102,7 @@ export default function ContactForm() {
           control={form.control}
           name="subject"
           render={({ field }) => (
-            <FormItem className="grid gap-2">
+            <FormItem className="grid gap-2 w-full flex flex-col justify-top">
               <FormLabel htmlFor="subject" hidden>
                 Subject
               </FormLabel>
@@ -124,7 +124,7 @@ export default function ContactForm() {
           control={form.control}
           name="subject"
           render={({ field }) => (
-            <FormItem className="grid gap-2">
+            <FormItem className="grid gap-2 w-full flex flex-col justify-top">
               <FormLabel htmlFor="message" hidden>
                 Message
               </FormLabel>
@@ -142,7 +142,7 @@ export default function ContactForm() {
         />
         <Button
           type="submit"
-          disabled={isLoading}
+          disabled={isLoading || !form.formState.isValid}
           className="rounded"
           size="lg"
         >

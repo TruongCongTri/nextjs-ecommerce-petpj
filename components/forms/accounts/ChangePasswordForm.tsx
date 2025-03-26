@@ -147,7 +147,7 @@ export default function ChangePasswordForm() {
                         control={form.control}
                         name="password"
                         render={({ field }) => (
-                          <FormItem className="grid gap-2">
+                          <FormItem className="grid gap-2 w-full flex flex-col justify-top">
                             <FormLabel htmlFor="current-password">
                               Current Password
                             </FormLabel>
@@ -169,7 +169,7 @@ export default function ChangePasswordForm() {
                           control={form.control}
                           name="password"
                           render={({ field }) => (
-                            <FormItem className="grid gap-2 w-full">
+                            <FormItem className="grid gap-2 w-full flex flex-col justify-top">
                               <FormLabel htmlFor="password">
                                 New Password
                               </FormLabel>
@@ -191,7 +191,7 @@ export default function ChangePasswordForm() {
                           control={form.control}
                           name="confirmPassword"
                           render={({ field }) => (
-                            <FormItem className="grid gap-2 w-full">
+                            <FormItem className="grid gap-2 w-full flex flex-col justify-top">
                               <FormLabel htmlFor="confirmPassword">
                                 Confirm Password
                               </FormLabel>
@@ -215,8 +215,10 @@ export default function ChangePasswordForm() {
                         type="submit"
                         size="lg"
                         className={`mr-auto font-semibold text-sm rounded-full ${
-                          !isEdit && "hidden"
+                          !isEdit && "hidden" 
                         }`}
+                        disabled={!form.formState.isValid}
+                        // disabled={!form.formState.isDirty}
                       >
                         Change Password
                       </Button>

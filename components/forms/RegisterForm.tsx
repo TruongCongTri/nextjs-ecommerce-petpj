@@ -48,11 +48,8 @@ export default function RegisterForm() {
     try {
       // Assuming an async registration function
       console.log(values);
-      toast(
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        </pre>
-      );
+      toast.success("Successfully register new account");
+      router.push(`${siteConfig.authorization.login}`);
     } catch (error) {
       console.error("Form submission error", error);
       toast.error("Failed to submit the form. Please try again.");
@@ -149,7 +146,11 @@ export default function RegisterForm() {
                 />
 
                 {/* btn */}
-                <Button type="submit" className="w-full">
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={!form.formState.isValid}
+                >
                   Register
                 </Button>
               </div>

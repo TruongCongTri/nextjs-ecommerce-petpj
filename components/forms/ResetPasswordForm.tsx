@@ -101,7 +101,7 @@ export default function ResetPasswordForm() {
                 />
 
                 {/* btn */}
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full" disabled={!form.formState.isValid}>
                   Reset Password
                 </Button>
               </div>

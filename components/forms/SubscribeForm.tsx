@@ -67,7 +67,7 @@ export default function SubscribeForm() {
               </FormItem>
             )}
           />
-          <Button type="submit" className="rounded-full px-6 py-6">
+          <Button type="submit" className="rounded-full px-6 py-6" disabled={!form.formState.isDirty}>
             Subscribe
           </Button>
         </div>

@@ -76,7 +76,7 @@ export default function ForgotPasswordForm() {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full" disabled={!form.formState.isValid}>
                   Send Reset Link
                 </Button>
               </div>

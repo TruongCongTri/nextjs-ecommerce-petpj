@@ -46,6 +46,7 @@ import {
 // import { categoryList } from "@/commons/categories";
 // import { productTagsList } from "@/commons/tags";
 import { fetchProductCategoryList, fetchProductTagList } from "@/apis/fetchAPI/product";
+import { LoadingSpinner } from "@/components/icons/loading-icon";
 
 type Schema = z.infer<typeof FilterSchema>;
 
@@ -137,14 +138,14 @@ export default function ProductsFilterForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <Button type="submit" className="rounded-full w-full">
+        <Button type="submit" className="rounded-full" size="lg">
           Filter <SlidersHorizontalIcon />
         </Button>
         <FormField
           control={form.control}
           name="cates"
           render={() => (
-            <FormItem>
+            <FormItem className=" w-full flex flex-col justify-top">
               <Collapsible
                 className="w-full space-y-5"
                 open={openCate}
@@ -162,7 +163,7 @@ export default function ProductsFilterForm() {
                 </CollapsibleTrigger>
                 <CollapsibleContent className="space-y-4">
                   {isCateLoading ? (
-                    <div>Loading categories...</div>
+                    <div className="w-full flex justify-center items-center"><LoadingSpinner /></div>
                   ) : (
                     <ScrollArea className="h-[200px] ">
                       {catList?.map((item, idx) => (
@@ -212,7 +213,7 @@ export default function ProductsFilterForm() {
           control={form.control}
           name="price"
           render={({ field: { value, onChange } }) => (
-            <FormItem className="">
+            <FormItem className=" w-full flex flex-col justify-top">
               <Collapsible
                 className="w-full space-y-5"
                 open={openPrice}
@@ -276,7 +277,7 @@ export default function ProductsFilterForm() {
           control={form.control}
           name="rating"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className=" w-full flex flex-col justify-top">
               <Collapsible
                 className="w-full space-y-5"
                 open={openRating}
@@ -326,7 +327,7 @@ export default function ProductsFilterForm() {
           control={form.control}
           name="tags"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className=" w-full flex flex-col justify-top">
               <Collapsible
                 className="w-full space-y-5"
                 open={openTag}
