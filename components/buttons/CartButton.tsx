@@ -95,7 +95,14 @@ export function CartButton() {
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="ghost" className="hidden lg:flex">
-            <ShoppingCart />
+            <div className="relative">
+              <ShoppingCart />
+              {cartItems.length !== 0 && (
+                <p className="absolute -top-5 start-2 flex h-2 min-w-2 items-center justify-center rounded-full bg-primary p-3 text-xs text-white">
+                  {cartItems.length}
+                </p>
+              )}
+            </div>
           </Button>
         </SheetTrigger>
         <SheetContent>
