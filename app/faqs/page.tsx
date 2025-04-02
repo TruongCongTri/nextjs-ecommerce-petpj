@@ -11,9 +11,9 @@ import React from "react";
 export default function FAQsPage() {
   return (
     <div className="container mx-auto px-4 pt-4 pb-10 md:px-6 lg:px-8 lg:pt-8 lg:pb-20 flex flex-col lg:flex-row gap-4">
-      <div className="w-full flex justify-between items-center">
+      <div className="w-full flex flex-col lg:flex-row lg:justify-between items-center gap-3">
         <div className="flex flex-col gap-8">
-          <div className="font-semibold text-5xl lg:max-w-[500px]">
+          <div className="font-semibold text-3xl lg:text-5xl lg:max-w-[500px] text-center lg:text-left">
             Welcome, Let’s Talk About Our Ecobazar
           </div>
 
@@ -90,6 +90,7 @@ export default function FAQsPage() {
           height={700}
           alt="about-01"
           src={`/images/placeholder.svg`}
+          className=""
         />
       </div>
     </div>

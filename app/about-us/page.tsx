@@ -14,13 +14,15 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EmployeeList } from "@/components/lists/EmployeeList";
+import Link from "next/link";
+import { siteConfig } from "@/data/site";
 export default function AboutUsPage() {
   return (
     <>
       <div className="container mx-auto px-4 pt-4 pb-10 md:px-6 lg:px-8 lg:py-8 flex flex-col lg:flex-row gap-4">
-        <div className="flex gap-[58px]">
+        <div className="flex flex-col lg:flex-row lg:gap-[58px] gap-4">
           <div className="flex flex-col justify-center gap-8">
-            <div className="text-6xl font-semibold lg:max-w-[600px]">
+            <div className="text-4xl lg:text-6xl font-semibold lg:max-w-[600px] text-center lg:text-left">
               100% Trusted Organic Food Store
             </div>
             <div className="font-normal text-lg text-muted-foreground">
@@ -39,16 +41,17 @@ export default function AboutUsPage() {
           />
         </div>
       </div>
-      <div className="flex gap-[58px]">
+      <div className="flex flex-col lg:flex-row lg:gap-[58px] px-4 lg:px-0 gap-4">
         <Image
           width={700}
           height={300}
           alt="about-01"
           src={`/images/placeholder.svg`}
+          className="order-2 lg:order-1"
         />
 
-        <div className="flex flex-col justify-center gap-8">
-          <div className="text-6xl font-semibold lg:max-w-[600px]">
+        <div className="flex flex-col justify-center gap-8 order-1 lg:order-2  pb-10 ">
+          <div className="text-4xl lg:text-6xl font-semibold lg:max-w-[600px] text-center lg:text-left">
             100% Trusted Organic Food Store
           </div>
           <div className="font-normal text-lg text-muted-foreground lg:max-w-[500px]">
@@ -143,9 +146,9 @@ export default function AboutUsPage() {
         </div>
       </div>
       <div className="container mx-auto px-4 pt-4 pb-10 md:px-6 lg:px-8 lg:py-8 flex flex-col lg:flex-row gap-4">
-        <div className="flex gap-[58px]">
-          <div className="flex flex-col justify-center gap-8">
-            <div className="text-6xl font-semibold lg:max-w-[600px]">
+        <div className="flex flex-col lg:flex-row lg:gap-[58px] gap-4">
+          <div className="flex flex-col justify-center gap-8 ">
+            <div className="text-4xl lg:text-6xl font-semibold lg:max-w-[600px] text-center lg:text-left">
               We Delivered, You Enjoy Your Order.
             </div>
             <div className="font-normal text-lg text-muted-foreground lg:max-w-[500px]">
@@ -180,9 +183,11 @@ export default function AboutUsPage() {
                 </div>
               </div>
             </div>
-            <Button className="w-[150px] rounded-full" size="lg">
-              Shop now <MoveRightIcon />
-            </Button>
+            <Link href={siteConfig.proxy.shop}>
+              <Button className="w-[150px] rounded-full" size="lg">
+                Shop now <MoveRightIcon />
+              </Button>
+            </Link>
           </div>
           <Image
             width={500}
