@@ -23,7 +23,7 @@ export default async function NewsList() {
   return (
     <div className="flex flex-col lg:gap-8 gap-4">
       <div className="flex justify-center items-center">
-        <div className="capitalize text-4xl font-semibold">Latest News</div>
+        <div className="capitalize text-2xl lg:text-4xl font-semibold">Latest News</div>
       </div>
       <div className="hidden lg:grid lg:grid-cols-3 lg:gap-6">
         {data.posts.map((o) => (

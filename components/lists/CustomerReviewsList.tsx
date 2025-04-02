@@ -21,7 +21,7 @@ export async function CustomerReviewsList() {
 
   return (
     <>
-    <div className="mb-[50px] capitalize text-4xl font-semibold">Client Testimonial</div>
+    <div className="mb-[50px] capitalize text-2xl lg:text-4xl font-semibold">Client Testimonial</div>
     <Carousel
       opts={{
         align: "start",

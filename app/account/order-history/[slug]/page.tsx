@@ -29,7 +29,7 @@ export default async function OrderDetailPage({
   const data = await fetchCart(parseInt(slug));
   const userData = await fetchUser(data.userId);
   return (
-    <div className="basis-full lg:basis-3/4">
+    <div className="w-[380px] lg:w-full basis-full lg:basis-3/4">
       <Card>
         <CardHeader className="border-b">
           <div className="flex justify-between items-center">
@@ -57,9 +57,10 @@ export default async function OrderDetailPage({
             </Button>
           </div>
         </CardHeader>
-        <CardContent className="lg:flex w-full pt-6">
-          {/* billing address */}
-          <Card className="w-full rounded-r-none">
+        <CardContent className=" w-full space-y-6">
+          <div className="flex flex-col lg:flex-row gap-2 lg:gap-0 w-full pt-6">
+            {/* billing address */}
+          <Card className="w-full lg:rounded-r-none">
             <CardHeader className="-p-6 px-5 py-4 border-b font-medium text-sm text-muted-foreground">
               Billing Address
             </CardHeader>
@@ -91,7 +92,7 @@ export default async function OrderDetailPage({
             </CardContent>
           </Card>
           {/* shipping address */}
-          <Card className="w-full rounded-l-none border-l-none">
+          <Card className="w-full lg:rounded-l-none lg:border-l-none">
             <CardHeader className="-p-6 border-b px-5 py-4 font-medium text-sm text-muted-foreground">
               Shipping Address
             </CardHeader>
@@ -173,12 +174,14 @@ export default async function OrderDetailPage({
               </div>
             </CardContent>
           </Card>
+          </div>
+          <div >
+          <DataOnlyTable columns={productColumns} data={data.products} />
+        </div>
         </CardContent>
 
         {/* <ProductTable /> */}
-        <div className="px-6">
-          <DataOnlyTable columns={productColumns} data={data.products} />
-        </div>
+        
       </Card>
     </div>
   );

@@ -5,6 +5,7 @@ import React from "react";
 import FullWidthPromoCard from "@/components/cards/promo/FullWidthPromoCard";
 import { IPromoFetch } from "@/models/promos";
 import apis from "@/apis";
+import SmallPromoCard from "../cards/promo/SmallPromoCard";
 
 const fetchPromos = async (): Promise<IPromoFetch> => {
   const res = await apis.promo.getPromos();
@@ -26,8 +27,13 @@ export default async function PromoFullSizeList() {
   return (
     <div className="">
       {fullSizePromoData.map((o) => (
-        <div key={o.id} className="col-start-3">
-          <FullWidthPromoCard {...o} />
+        <div key={o.id}>
+          <div className="hidden lg:grid">
+            <FullWidthPromoCard {...o} />
+          </div>
+          <div className="lg:hidden">
+            <SmallPromoCard {...o} />
+          </div>
         </div>
       ))}
     </div>

@@ -134,151 +134,159 @@ export default function ProductsFilterFormWithoutCate() {
         <Button type="submit" className="rounded-full" size="lg">
           Filter <SlidersHorizontalIcon />
         </Button>
-        <FormField
-          control={form.control}
-          name="price"
-          render={({ field: { value, onChange } }) => (
-            <FormItem className=" w-full flex flex-col justify-top">
-              <Collapsible
-                className="w-full space-y-5"
-                open={openPrice}
-                onOpenChange={setOpenPrice}
-              >
-                <CollapsibleTrigger asChild>
-                  <button className="w-full inline-flex items-center justify-center">
-                    <FormLabel className="text-xl font-medium">Price</FormLabel>
-                    {openPrice ? (
-                      <ChevronDown className="ml-auto" />
-                    ) : (
-                      <ChevronRight className="ml-auto" />
-                    )}
-                  </button>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="space-y-4">
-                  <FormControl>
-                    <DualRangeSlider
-                      // label={(value) => <span>${value}</span>}
-                      value={form.getValues("price")}
-                      defaultValue={value}
-                      onValueChange={(vals) => {
-                        onChange(vals);
-                      }}
-                      min={MIN_PRICE}
-                      max={MAX_PRICE}
-                      step={10}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                  <FormDescription>
-                    Price:{" "}
-                    {value &&
-                      Intl.NumberFormat("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                      }).format(value[0])}{" "}
-                    -{" "}
-                    {value &&
-                      Intl.NumberFormat("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                      }).format(value[1])}
-                  </FormDescription>
-                </CollapsibleContent>
-              </Collapsible>
-            </FormItem>
-          )}
-        />
-        <Separator />
-        <FormField
-          control={form.control}
-          name="rating"
-          render={({ field }) => (
-            <FormItem className=" w-full flex flex-col justify-top">
-              <Collapsible
-                className="w-full space-y-5"
-                open={openRating}
-                onOpenChange={setOpenRating}
-              >
-                <CollapsibleTrigger asChild>
-                  <button className="w-full inline-flex items-center justify-center">
-                    <FormLabel className="text-xl font-medium">Rating</FormLabel>
-                    {openRating ? (
-                      <ChevronDown className="ml-auto" />
-                    ) : (
-                      <ChevronRight className="ml-auto" />
-                    )}
-                  </button>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="space-y-4">
-                  <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                      className="flex flex-col justify-center space-y-4"
-                    >
-                      {RATINGS.map((o, idx) => (
-                        <FormItem
-                          key={idx}
-                          className="flex items-center space-x-3 space-y-0"
-                        >
-                          <FormControl>
-                            <RadioGroupItem value={o.key} />
-                          </FormControl>
-                          <FormLabel className="font-normal">
-                            {o.value}
-                          </FormLabel>
-                        </FormItem>
-                      ))}
-                    </RadioGroup>
-                  </FormControl>
-                </CollapsibleContent>
-              </Collapsible>
+        <div className="h-[400px] overflow-y-scroll lg:h-full lg:overflow-auto space-y-6 px-4">
+          <FormField
+            control={form.control}
+            name="price"
+            render={({ field: { value, onChange } }) => (
+              <FormItem className=" w-full flex flex-col justify-top">
+                <Collapsible
+                  className="w-full space-y-5"
+                  open={openPrice}
+                  onOpenChange={setOpenPrice}
+                >
+                  <CollapsibleTrigger asChild>
+                    <button className="w-full inline-flex items-center justify-center">
+                      <FormLabel className="text-xl font-medium">
+                        Price
+                      </FormLabel>
+                      {openPrice ? (
+                        <ChevronDown className="ml-auto" />
+                      ) : (
+                        <ChevronRight className="ml-auto" />
+                      )}
+                    </button>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="space-y-4">
+                    <FormControl>
+                      <DualRangeSlider
+                        // label={(value) => <span>${value}</span>}
+                        value={form.getValues("price")}
+                        defaultValue={value}
+                        onValueChange={(vals) => {
+                          onChange(vals);
+                        }}
+                        min={MIN_PRICE}
+                        max={MAX_PRICE}
+                        step={10}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                    <FormDescription>
+                      Price:{" "}
+                      {value &&
+                        Intl.NumberFormat("en-US", {
+                          style: "currency",
+                          currency: "USD",
+                        }).format(value[0])}{" "}
+                      -{" "}
+                      {value &&
+                        Intl.NumberFormat("en-US", {
+                          style: "currency",
+                          currency: "USD",
+                        }).format(value[1])}
+                    </FormDescription>
+                  </CollapsibleContent>
+                </Collapsible>
+              </FormItem>
+            )}
+          />
+          <Separator />
+          <FormField
+            control={form.control}
+            name="rating"
+            render={({ field }) => (
+              <FormItem className=" w-full flex flex-col justify-top">
+                <Collapsible
+                  className="w-full space-y-5"
+                  open={openRating}
+                  onOpenChange={setOpenRating}
+                >
+                  <CollapsibleTrigger asChild>
+                    <button className="w-full inline-flex items-center justify-center">
+                      <FormLabel className="text-xl font-medium">
+                        Rating
+                      </FormLabel>
+                      {openRating ? (
+                        <ChevronDown className="ml-auto" />
+                      ) : (
+                        <ChevronRight className="ml-auto" />
+                      )}
+                    </button>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="space-y-4">
+                    <FormControl>
+                      <RadioGroup
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        className="flex flex-col justify-center space-y-4"
+                      >
+                        {RATINGS.map((o, idx) => (
+                          <FormItem
+                            key={idx}
+                            className="flex items-center space-x-3 space-y-0"
+                          >
+                            <FormControl>
+                              <RadioGroupItem value={o.key} />
+                            </FormControl>
+                            <FormLabel className="font-normal">
+                              {o.value}
+                            </FormLabel>
+                          </FormItem>
+                        ))}
+                      </RadioGroup>
+                    </FormControl>
+                  </CollapsibleContent>
+                </Collapsible>
 
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Separator />
-        <FormField
-          control={form.control}
-          name="tags"
-          render={({ field }) => (
-            <FormItem className=" w-full flex flex-col justify-top">
-              <Collapsible
-                className="w-full space-y-5"
-                open={openTag}
-                onOpenChange={setOpenTag}
-              >
-                <CollapsibleTrigger asChild>
-                  <button className="w-full inline-flex items-center justify-center">
-                    <FormLabel className="text-xl font-medium">Tags</FormLabel>
-                    {openTag ? (
-                      <ChevronDown className="ml-auto" />
-                    ) : (
-                      <ChevronRight className="ml-auto" />
-                    )}
-                  </button>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="space-y-4">
-                  <FormControl>
-                    <MultiSelect
-                      options={tagList}
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                      placeholder="Select options"
-                      variant="inverted"
-                      animation={2}
-                      maxCount={3}
-                      disabled={isTagLoading}
-                    />
-                  </FormControl>
-                </CollapsibleContent>
-              </Collapsible>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Separator />
+          <FormField
+            control={form.control}
+            name="tags"
+            render={({ field }) => (
+              <FormItem className=" w-full flex flex-col justify-top">
+                <Collapsible
+                  className="w-full space-y-5"
+                  open={openTag}
+                  onOpenChange={setOpenTag}
+                >
+                  <CollapsibleTrigger asChild>
+                    <button className="w-full inline-flex items-center justify-center">
+                      <FormLabel className="text-xl font-medium">
+                        Tags
+                      </FormLabel>
+                      {openTag ? (
+                        <ChevronDown className="ml-auto" />
+                      ) : (
+                        <ChevronRight className="ml-auto" />
+                      )}
+                    </button>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="space-y-4">
+                    <FormControl>
+                      <MultiSelect
+                        options={tagList}
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        placeholder="Select options"
+                        variant="inverted"
+                        animation={2}
+                        maxCount={3}
+                        disabled={isTagLoading}
+                      />
+                    </FormControl>
+                  </CollapsibleContent>
+                </Collapsible>
 
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
       </form>
     </Form>
   );

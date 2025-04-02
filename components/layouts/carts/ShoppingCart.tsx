@@ -207,126 +207,238 @@ export default function ShoppingCartLayout() {
               </>
             )} */}
 
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr>
-                      <th className="py-4 px-6 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200">
-                        Product
-                      </th>
-                      <th className="py-4 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200">
-                        Price
-                      </th>
-                      <th className="py-4 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200">
-                        Quantity
-                      </th>
-                      <th className="py-4 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200">
-                        Subtotal
-                      </th>
-                      <th className="py-4 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cartItems.map((o, idx) => (
-                      <tr
-                        key={o.id}
-                        className={`hover:bg-gray-100 py-4 px-6 ${
-                          cartItems.length - 1 !== idx && "border-b"
-                        }`}
-                      >
-                        <td className="px-6">
-                          <div className="flex gap-3 items-center">
-                            <Image
-                              src={`${
-                                o.thumbnail
-                                  ? o.thumbnail
-                                  : "/images/placeholder.svg"
-                              }`}
-                              alt={o.thumbnail || "image"}
-                              width={100}
-                              height={100}
-                              className="aspect-square rounded-none"
-                            />
-                            <div className="font-normal text-base">
-                              {o.title}
+                <div className="hidden lg:block">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr>
+                        <th className="py-4 px-6 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200">
+                          Product
+                        </th>
+                        <th className="py-4 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200">
+                          Price
+                        </th>
+                        <th className="py-4 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200">
+                          Quantity
+                        </th>
+                        <th className="py-4 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200">
+                          Subtotal
+                        </th>
+                        <th className="py-4 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {cartItems.map((o, idx) => (
+                        <tr
+                          key={o.id}
+                          className={`hover:bg-gray-100 py-4 px-6 ${
+                            cartItems.length - 1 !== idx && "border-b"
+                          }`}
+                        >
+                          <td className="px-6">
+                            <div className="flex gap-3 items-center">
+                              <Image
+                                src={`${
+                                  o.thumbnail
+                                    ? o.thumbnail
+                                    : "/images/placeholder.svg"
+                                }`}
+                                alt={o.thumbnail || "image"}
+                                width={100}
+                                height={100}
+                                className="aspect-square rounded-none"
+                              />
+                              <div className="font-normal text-base">
+                                {o.title}
+                              </div>
                             </div>
-                          </div>
-                        </td>
-                        <td>
-                          <div className="font-normal text-base">
-                            {o.discountPercentage
-                              ? Intl.NumberFormat("en-US", {
-                                  style: "currency",
-                                  currency: "USD",
-                                }).format(
-                                  (o.price * (100 - o.discountPercentage)) / 100
-                                )
-                              : Intl.NumberFormat("en-US", {
-                                  style: "currency",
-                                  currency: "USD",
-                                }).format(o.price)}
-                          </div>
-                        </td>
-                        <td>
-                          <div className="flex items-center gap-2">
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="w-6 h-6 hover:bg-muted"
-                              onClick={() => decreaseCart(o)}
-                            >
-                              <Minus className="w-4 h-4" />
-                              <span className="sr-only">Decrease quantity</span>
-                            </Button>
+                          </td>
+                          <td>
                             <div className="font-normal text-base">
-                              {o.quantity}
+                              {o.discountPercentage
+                                ? Intl.NumberFormat("en-US", {
+                                    style: "currency",
+                                    currency: "USD",
+                                  }).format(
+                                    (o.price * (100 - o.discountPercentage)) /
+                                      100
+                                  )
+                                : Intl.NumberFormat("en-US", {
+                                    style: "currency",
+                                    currency: "USD",
+                                  }).format(o.price)}
                             </div>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="w-6 h-6 hover:bg-muted"
-                              onClick={() => increaseCart(o)}
-                            >
-                              <Plus className="w-4 h-4" />
-                              <span className="sr-only">Increase quantity</span>
-                            </Button>
-                          </div>
-                        </td>
-                        <td>
-                          {/* {o.discountPercentage
+                          </td>
+                          <td>
+                            <div className="flex items-center gap-2">
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="w-6 h-6 hover:bg-muted"
+                                onClick={() => decreaseCart(o)}
+                              >
+                                <Minus className="w-4 h-4" />
+                                <span className="sr-only">
+                                  Decrease quantity
+                                </span>
+                              </Button>
+                              <div className="font-normal text-base">
+                                {o.quantity}
+                              </div>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="w-6 h-6 hover:bg-muted"
+                                onClick={() => increaseCart(o)}
+                              >
+                                <Plus className="w-4 h-4" />
+                                <span className="sr-only">
+                                  Increase quantity
+                                </span>
+                              </Button>
+                            </div>
+                          </td>
+                          <td>
+                            {/* {o.discountPercentage
                             ? Intl.NumberFormat("en-US", {
                                 style: "currency",
                                 currency: "USD",
                               }).format(
                                 (o.price * (100 - o.discountPercentage)) / 100
                               ) */}
-                          <div className="font-medium text-base">
-                            {Intl.NumberFormat("en-US", {
-                              style: "currency",
-                              currency: "USD",
-                            }).format(
-                              o.discountedTotal || o.price * (o.quantity || 1)
-                            )}
+                            <div className="font-medium text-base">
+                              {Intl.NumberFormat("en-US", {
+                                style: "currency",
+                                currency: "USD",
+                              }).format(
+                                o.discountedTotal || o.price * (o.quantity || 1)
+                              )}
+                            </div>
+                          </td>
+                          <td className="px-6 ">
+                            <div className="flex justify-end">
+                              <Button
+                                variant="outline"
+                                size="icon"
+                                className="rounded-full hover:bg-primary hover:text-white"
+                                onClick={() => clearCart(o)}
+                              >
+                                <X />
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="lg:hidden">
+                  <div className="w-full text-left border-collapse">
+                    <div className="rounded-t-xl bg-gray-100">
+                      <div className="px-4 lg:px-6 py-4 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200">
+                        Product
+                      </div>
+                    </div>
+                    <div>
+                      {cartItems.map((o, idx) => (
+                        <div
+                          key={o.id}
+                          className={`hover:bg-gray-100 py-4 px-4 lg:px-6 flex gap-4 ${
+                            cartItems.length - 1 !== idx && "border-b"
+                          }`}
+                        >
+                          {/* h-[50px] w-[50px] lg:h-[100px] lg:w-[100px] max-w-[100px] max-h-[100px]  */}
+                          <Image
+                            src={`${
+                              o.thumbnail
+                                ? o.thumbnail
+                                : "/images/placeholder.svg"
+                            }`}
+                            alt={o.thumbnail || "image"}
+                            width={100}
+                            height={100}
+                            className="h-[100px] w-[100px] aspect-square rounded-xl"
+                          />
+
+                          <div className="w-full flex flex-col justify-between">
+                            <div className="space-y-2">
+                              <div className="font-normal text-base line-clamp-1">
+                                {o.title}
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="w-6 h-6 hover:bg-muted"
+                                  onClick={() => decreaseCart(o)}
+                                >
+                                  <Minus className="w-4 h-4" />
+                                  <span className="sr-only">
+                                    Decrease quantity
+                                  </span>
+                                </Button>
+                                <div className="font-normal text-base">
+                                  {o.quantity}
+                                </div>
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="w-6 h-6 hover:bg-muted"
+                                  onClick={() => increaseCart(o)}
+                                >
+                                  <Plus className="w-4 h-4" />
+                                  <span className="sr-only">
+                                    Increase quantity
+                                  </span>
+                                </Button>
+                              </div>
+                            </div>
+                            <div className="flex justify-between items-end">
+                              <div className="font-normal text-base">
+                                {o.discountPercentage
+                                  ? Intl.NumberFormat("en-US", {
+                                      style: "currency",
+                                      currency: "USD",
+                                    }).format(
+                                      (o.price * (100 - o.discountPercentage)) /
+                                        100
+                                    )
+                                  : Intl.NumberFormat("en-US", {
+                                      style: "currency",
+                                      currency: "USD",
+                                    }).format(o.price)}
+                              </div>
+
+                              <div className="justify-end items-center flex gap-2 lg:gap-6">
+                                {o.availabilityStatus === "Out of Stock" ? (
+                                  <Button
+                                    size="lg"
+                                    className="rounded-full "
+                                    disabled={true}
+                                  >
+                                    Out of Stock
+                                  </Button>
+                                ) : (
+                                  <></>
+                                )}
+                                <Button
+                                  variant="outline"
+                                  size="icon"
+                                  className="rounded-full hover:bg-primary hover:text-white"
+                                  onClick={() => clearCart(o)}
+                                >
+                                  <X />
+                                </Button>
+                              </div>
+                            </div>
                           </div>
-                        </td>
-                        <td className="px-6 ">
-                          <div className="flex justify-end">
-                            <Button
-                              variant="outline"
-                              size="icon"
-                              className="rounded-full hover:bg-primary hover:text-white"
-                              onClick={() => clearCart(o)}
-                            >
-                              <X />
-                            </Button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </CardContent>
               {cartItems.length !== 0 && (
-                <CardFooter className="py-4 px-6 border-t">
+                <CardFooter className="py-4 px-4 lg:px-6 border-t">
                   <div className="flex flex-col gap-4 w-full">
                     <div className="flex justify-end w-full">
                       <TooltipProvider>
@@ -427,7 +539,9 @@ export default function ShoppingCartLayout() {
           </div>
         </>
       ) : (
-        <div className="py-[80px] flex items-center justify-center">Cart is empty</div>
+        <div className="py-[80px] flex items-center justify-center">
+          Cart is empty
+        </div>
       )}
     </main>
   );

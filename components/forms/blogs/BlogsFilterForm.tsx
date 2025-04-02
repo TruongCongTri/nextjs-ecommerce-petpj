@@ -60,7 +60,7 @@ export default function BlogsFilterForm() {
       setIsCateLoading(false);
     };
     const fetchTags = async () => {
-      const res = await fetchPostTagList();;
+      const res = await fetchPostTagList();
       // // const data = await res.json();
       setTagList(res);
       // setTagList(postTagsList);
@@ -123,133 +123,144 @@ export default function BlogsFilterForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <Button type="submit" className="rounded-full " size="lg" >
+        <Button type="submit" className="rounded-full " size="lg">
           Filter <SlidersHorizontalIcon />
         </Button>
-        <FormField
-          control={form.control}
-          name="query"
-          render={({ field }) => (
-            <FormItem className=" w-full flex flex-col justify-top">
-              <VisuallyHidden>
-                <FormLabel className="text-xl font-medium">Search</FormLabel>
-              </VisuallyHidden>
-              <FormControl>
-                <Input placeholder="Search..." {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Separator />
-        <FormField
-          control={form.control}
-          name="cates"
-          render={() => (
-            <FormItem className=" w-full flex flex-col justify-top">
-              <Collapsible
-                className="w-full space-y-5"
-                open={openCate}
-                onOpenChange={setOpenCate}
-              >
-                <CollapsibleTrigger asChild>
-                  <button className="w-full inline-flex items-center justify-center">
-                    <FormLabel className="text-xl font-medium">Categories</FormLabel>
-                    {openCate ? (
-                      <ChevronDown className="ml-auto" />
+        <div className="h-[400px] overflow-y-scroll lg:h-full lg:overflow-auto space-y-6 px-4">
+          <FormField
+            control={form.control}
+            name="query"
+            render={({ field }) => (
+              <FormItem className=" w-full flex flex-col justify-top">
+                <VisuallyHidden>
+                  <FormLabel className="text-xl font-medium">Search</FormLabel>
+                </VisuallyHidden>
+                <FormControl>
+                  <Input placeholder="Search..." {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Separator />
+          <FormField
+            control={form.control}
+            name="cates"
+            render={() => (
+              <FormItem className=" w-full flex flex-col justify-top">
+                <Collapsible
+                  className="w-full space-y-5"
+                  open={openCate}
+                  onOpenChange={setOpenCate}
+                >
+                  <CollapsibleTrigger asChild>
+                    <button className="w-full inline-flex items-center justify-center">
+                      <FormLabel className="text-xl font-medium">
+                        Categories
+                      </FormLabel>
+                      {openCate ? (
+                        <ChevronDown className="ml-auto" />
+                      ) : (
+                        <ChevronRight className="ml-auto" />
+                      )}
+                    </button>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="space-y-4">
+                    {isCateLoading ? (
+                      <div className="w-full flex justify-center items-center">
+                        <LoadingSpinner />
+                      </div>
                     ) : (
-                      <ChevronRight className="ml-auto" />
+                      <ScrollArea className="h-[200px] ">
+                        {catList?.map((item, idx) => (
+                          <FormField
+                            key={idx}
+                            control={form.control}
+                            name="cates"
+                            render={({ field }) => {
+                              return (
+                                <FormItem
+                                  key={idx}
+                                  className="flex flex-row items-center space-x-4 "
+                                >
+                                  <FormControl>
+                                    <Checkbox
+                                      checked={field.value?.includes(`${item}`)}
+                                      onCheckedChange={(checked) => {
+                                        return checked
+                                          ? field.onChange([
+                                              ...field.value,
+                                              item,
+                                            ])
+                                          : field.onChange(
+                                              field.value?.filter(
+                                                (value) => value !== item
+                                              )
+                                            );
+                                      }}
+                                    />
+                                  </FormControl>
+                                  <FormLabel className="text-sm font-normal ">
+                                    {item}
+                                  </FormLabel>
+                                </FormItem>
+                              );
+                            }}
+                          />
+                        ))}
+                      </ScrollArea>
                     )}
-                  </button>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="space-y-4">
-                  {isCateLoading ? (
-                    <div className="w-full flex justify-center items-center"><LoadingSpinner /></div>
-                  ) : (
-                    <ScrollArea className="h-[200px] ">
-                      {catList?.map((item, idx) => (
-                        <FormField
-                          key={idx}
-                          control={form.control}
-                          name="cates"
-                          render={({ field }) => {
-                            return (
-                              <FormItem
-                                key={idx}
-                                className="flex flex-row items-center space-x-4 "
-                              >
-                                <FormControl>
-                                  <Checkbox
-                                    checked={field.value?.includes(`${item}`)}
-                                    onCheckedChange={(checked) => {
-                                      return checked
-                                        ? field.onChange([...field.value, item])
-                                        : field.onChange(
-                                            field.value?.filter(
-                                              (value) => value !== item
-                                            )
-                                          );
-                                    }}
-                                  />
-                                </FormControl>
-                                <FormLabel className="text-sm font-normal ">
-                                  {item}
-                                </FormLabel>
-                              </FormItem>
-                            );
-                          }}
-                        />
-                      ))}
-                    </ScrollArea>
-                  )}
 
-                  <FormMessage />
-                </CollapsibleContent>
-              </Collapsible>
-            </FormItem>
-          )}
-        />
-        <Separator />
-        <FormField
-          control={form.control}
-          name="tags"
-          render={({ field }) => (
-            <FormItem className=" w-full flex flex-col justify-top">
-              <Collapsible
-                className="w-full space-y-5"
-                open={openTag}
-                onOpenChange={setOpenTag}
-              >
-                <CollapsibleTrigger asChild>
-                  <button className="w-full inline-flex items-center justify-center">
-                    <FormLabel className="text-xl font-medium">Tags</FormLabel>
-                    {openTag ? (
-                      <ChevronDown className="ml-auto" />
-                    ) : (
-                      <ChevronRight className="ml-auto" />
-                    )}
-                  </button>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="space-y-4">
-                  <FormControl>
-                    <MultiSelect
-                      options={tagList}
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                      placeholder="Select options"
-                      variant="inverted"
-                      animation={2}
-                      maxCount={3}
-                      disabled={isTagLoading}
-                    />
-                  </FormControl>
-                </CollapsibleContent>
-              </Collapsible>
+                    <FormMessage />
+                  </CollapsibleContent>
+                </Collapsible>
+              </FormItem>
+            )}
+          />
+          <Separator />
+          <FormField
+            control={form.control}
+            name="tags"
+            render={({ field }) => (
+              <FormItem className=" w-full flex flex-col justify-top">
+                <Collapsible
+                  className="w-full space-y-5"
+                  open={openTag}
+                  onOpenChange={setOpenTag}
+                >
+                  <CollapsibleTrigger asChild>
+                    <button className="w-full inline-flex items-center justify-center">
+                      <FormLabel className="text-xl font-medium">
+                        Tags
+                      </FormLabel>
+                      {openTag ? (
+                        <ChevronDown className="ml-auto" />
+                      ) : (
+                        <ChevronRight className="ml-auto" />
+                      )}
+                    </button>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="space-y-4">
+                    <FormControl>
+                      <MultiSelect
+                        options={tagList}
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        placeholder="Select options"
+                        variant="inverted"
+                        animation={2}
+                        maxCount={3}
+                        disabled={isTagLoading}
+                      />
+                    </FormControl>
+                  </CollapsibleContent>
+                </Collapsible>
 
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
       </form>
     </Form>
   );

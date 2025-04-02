@@ -365,42 +365,40 @@ export default function CheckOutLayout() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="mb-3">
+                    <div className="mb-3 w-full">
                       {cartItems.length !== 0 ? (
                         cartItems.map((o, idx) => (
                           // className="flex justify-center items-center"
-
-                          <div
-                            key={idx}
-                            className="flex justify-between items-center"
-                          >
-                            <div className="flex items-center gap-1">
-                              <Image
-                                src={`${
-                                  o.thumbnail
-                                    ? o.thumbnail
-                                    : "/images/placeholder.svg"
-                                }`}
-                                alt={o.thumbnail || "image"}
-                                width={60}
-                                height={60}
-                                className="aspect-square rounded-xl"
-                              />
-                              <div className="flex items-center gap-1">
-                                <div className="font-normal text-sm">
-                                  {o.title}
+                          <div key={idx} className="flex gap-4 w-full">
+                            <Image
+                              src={`${
+                                o.thumbnail
+                                  ? o.thumbnail
+                                  : "/images/placeholder.svg"
+                              }`}
+                              alt={o.thumbnail || "image"}
+                              width={60}
+                              height={60}
+                              className="aspect-square rounded-xl"
+                            />
+                            <div className="h-[60px] flex flex-col justify-between  w-full">
+                              <div className="font-normal text-sm max-w-[150px] line-clamp-1 lg:w-full">
+                                {o.title}
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center ">
+                                  <X className="size-3" />
+                                  <div className="font-normal text-sm">
+                                    {o.quantity}
+                                  </div>
                                 </div>
-                                <X className="size-3" />
-                                <div className="font-normal text-sm">
-                                  {o.quantity}
+                                <div className="font-semibold text-sm ">
+                                  {Intl.NumberFormat("en-US", {
+                                    style: "currency",
+                                    currency: "USD",
+                                  }).format(o.price)}
                                 </div>
                               </div>
-                            </div>
-                            <div className="font-semibold text-sm ">
-                              {Intl.NumberFormat("en-US", {
-                                style: "currency",
-                                currency: "USD",
-                              }).format(o.price)}
                             </div>
                           </div>
                         ))
@@ -493,7 +491,11 @@ export default function CheckOutLayout() {
                         type="submit"
                         className="w-full rounded-full"
                         size="lg"
-                        disabled={isLoading || cartItems.length === 0 || !form.formState.isValid}
+                        disabled={
+                          isLoading ||
+                          cartItems.length === 0 ||
+                          !form.formState.isValid
+                        }
                       >
                         Place Order
                       </Button>

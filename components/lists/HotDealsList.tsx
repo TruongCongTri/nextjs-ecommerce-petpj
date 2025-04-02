@@ -23,7 +23,7 @@ export default async function HotDealsList() {
   return (
     <div className="flex flex-col lg:gap-6 gap-2">
       <div className="flex justify-between items-center">
-        <div className="capitalize text-4xl font-semibold">Hot Deals</div>
+        <div className="capitalize text-2xl lg:text-4xl font-semibold">Hot Deals</div>
         <Button
           asChild
           variant="link"
@@ -39,7 +39,8 @@ export default async function HotDealsList() {
         {data.products.map((o, idx) =>
           idx === 0 ? (
             <div key={idx} className="lg:col-span-2 lg:row-span-2">
-              <LargeProductCard {...o} />
+              <div className="hidden lg:grid h-full"><LargeProductCard {...o} /></div>
+              <div className="lg:hidden "><ProductCard {...o} /></div>
             </div>
           ) : (
             <ProductCard {...o} key={idx} />

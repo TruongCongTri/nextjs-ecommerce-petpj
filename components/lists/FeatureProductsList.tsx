@@ -22,7 +22,7 @@ export default async function FeatureProductsList() {
   return (
     <div className="flex flex-col lg:gap-6 gap-2">
       <div className="flex justify-between items-center">
-        <div className="capitalize text-4xl font-semibold">Feature Products</div>
+        <div className="capitalize text-2xl lg:text-4xl font-semibold">Feature Products</div>
         <Button
           asChild
           variant="link"

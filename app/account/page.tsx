@@ -67,7 +67,7 @@ export default function AccountPage() {
     return (
       <div className="flex flex-col gap-6 basis-full lg:basis-3/4">
         <div className="flex flex-col lg:flex-row gap-6">
-          <Card className="w-full py-8">
+          <Card className="w-fit lg:w-full py-8">
             <CardContent className="flex flex-col items-center justify-center space-y-2">
               <Skeleton className="rounded-full size-[120px]" />
               {/* name */}
@@ -79,7 +79,7 @@ export default function AccountPage() {
               <Skeleton className="h-6 w-[100px]" />
             </CardFooter>
           </Card>
-          <Card className="w-full py-8">
+          <Card className="w-fit lg:w-full py-8">
             <CardHeader className="flex flex-col space-y-2 justify-center items-center text-center lg:justify-start lg:items-start lg:text-start">
               {/* billing */}
               <Skeleton className="h-6 w-[100px]" />
@@ -95,7 +95,7 @@ export default function AccountPage() {
             </CardFooter>
           </Card>
         </div>
-        <Card className="w-full h-full"></Card>
+        <Card className="w-fit lg:w-full h-full"></Card>
       </div>
     );
   if (isExpired) return <p>token expired...</p>;
@@ -104,7 +104,7 @@ export default function AccountPage() {
     <div className="flex flex-col gap-6 basis-full lg:basis-3/4 h-full">
       <div className="flex flex-col lg:flex-row gap-6">
         {/* general profile */}
-        <Card className="w-full py-8">
+        <Card className="w-[380px] lg:w-full py-8">
           <CardContent className="flex flex-col items-center justify-center">
             <Avatar className="size-[120px]">
               <AvatarImage src={auth?.image} alt={auth?.image} />
@@ -130,7 +130,7 @@ export default function AccountPage() {
           </CardFooter>
         </Card>
         {/* billing address */}
-        <Card className="w-full">
+        <Card className="w-[380px] lg:w-full">
           <CardHeader className="flex flex-col space-y-2 justify-center items-center text-center lg:justify-start lg:items-start lg:text-start font-medium text-sm text-muted-foreground">
             Billing Address
           </CardHeader>
@@ -160,7 +160,7 @@ export default function AccountPage() {
           </CardFooter>
         </Card>
       </div>
-      <Card className="">
+      <Card className="w-[380px] lg:w-full overflow-x-auto">
         <RecentOrderTable userId={auth?.id || 1} />
       </Card>
     </div>

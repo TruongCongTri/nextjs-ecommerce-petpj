@@ -87,14 +87,14 @@ export default function ProductsFilterHeader({
               <span className="sr-only">Toggle filter menu</span>
             </Button>
           </DrawerTrigger>
-          <DrawerContent className="space-y-4">
+          <DrawerContent className="space-y-4 max-h-[600px] py-4">
             <VisuallyHidden.Root>
               <DrawerTitle>Filter</DrawerTitle>
             </VisuallyHidden.Root>
             <div className="px-4">
               <ProductsFilterForm />
             </div>
-            <div className="px-4">
+            <div className="px-8">
               <DrawerClose asChild>
                 <Button className="w-full" variant="outline">
                   Cancel

@@ -24,7 +24,7 @@ export default function SmallPromoCard(promo: IPromoType) {
             </div>
             <div
               id="tittle"
-              className="capitalize text-black font-semibold text-4xl"
+              className="capitalize text-black font-semibold text-2xl lg:text-4xl max-w-[250px]"
             >
               {promo.title}
             </div>

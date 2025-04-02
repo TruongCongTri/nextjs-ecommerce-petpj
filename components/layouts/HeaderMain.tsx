@@ -91,7 +91,7 @@ export default function HeaderMain({ items }: { items: NavItem[] }) {
           prefetch={false}
         >
           <SproutIcon className="h-8 w-8 text-primary" />
-          <span className="font-medium text-3xl">Ecobazar</span>
+          <span className="font-medium text-3xl hidden lg:grid">Ecobazar</span>
         </Link>
       </div>
       {/* <SearchForm /> */}

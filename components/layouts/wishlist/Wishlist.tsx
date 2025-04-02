@@ -10,7 +10,7 @@ import { FavItemsList } from "@/contexts/FavContext";
 
 import { CartContext } from "@/contexts/CartContext";
 import { CartItemsList } from "@/contexts/CartContext";
-import { Trash, X } from "lucide-react";
+import { ShoppingBag, Trash, X } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -93,12 +93,12 @@ export default function WishlistLayout() {
     <main className="flex flex-col lg:flex-row lg:justify-between gap-6 md:gap-8 ">
       {favItems.length !== 0 ? (
         <div className="flex-1">
-        {favItems.length === 0 ? (
-          <div>Wishlist is empty</div>
-        ) : (
-          <Card>
-            <CardContent className="-p-6">
-              {/* {isLoading ? (
+          {favItems.length === 0 ? (
+            <div>Wishlist is empty</div>
+          ) : (
+            <Card>
+              <CardContent className="-p-6">
+                {/* {isLoading ? (
               <div>loading</div>
             ) : (
               <>
@@ -167,31 +167,128 @@ export default function WishlistLayout() {
               </>
             )} */}
 
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr>
-                    <th className="px-6 py-4 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200">
-                      Product
-                    </th>
-                    <th className="py-4 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200">
-                      Price
-                    </th>
-                    <th className="py-4 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200">
-                      Stock Status
-                    </th>
-                    <th className="py-4 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {favItems.map((o, idx) => (
-                    <tr
-                      key={o.id}
-                      className={`hover:bg-gray-100 py-4 px-6 ${
-                        favItems.length - 1 !== idx && "border-b"
-                      }`}
-                    >
-                      <td className="px-6">
-                        <div className="flex gap-3 items-center">
+                <div className="hidden lg:block">
+                  <table className=" w-full text-left border-collapse">
+                    <thead>
+                      <tr>
+                        <th className="px-4 lg:px-6 py-4 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200">
+                          Product
+                        </th>
+                        <th className="py-4 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200">
+                          Price
+                        </th>
+                        <th className="py-4 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200">
+                          Stock Status
+                        </th>
+                        <th className="py-4 bg-gray-100 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {favItems.map((o, idx) => (
+                        <tr
+                          key={o.id}
+                          className={`hover:bg-gray-100 py-4 px-6 ${
+                            favItems.length - 1 !== idx && "border-b"
+                          }`}
+                        >
+                          <td className="px-4 lg:px-6">
+                            <div className="flex gap-3 items-center">
+                              <Image
+                                src={`${
+                                  o.thumbnail
+                                    ? o.thumbnail
+                                    : "/images/placeholder.svg"
+                                }`}
+                                alt={o.thumbnail || "image"}
+                                width={100}
+                                height={100}
+                                className="aspect-square rounded-none"
+                              />
+                              <div className="font-normal text-base">
+                                {o.title}
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <div className="font-normal text-base">
+                              {o.discountPercentage
+                                ? Intl.NumberFormat("en-US", {
+                                    style: "currency",
+                                    currency: "USD",
+                                  }).format(
+                                    (o.price * (100 - o.discountPercentage)) /
+                                      100
+                                  )
+                                : Intl.NumberFormat("en-US", {
+                                    style: "currency",
+                                    currency: "USD",
+                                  }).format(o.price)}
+                            </div>
+                          </td>
+                          <td>
+                            <div className="font-medium text-base">
+                              {o.availabilityStatus}
+                            </div>
+                          </td>
+                          <td>
+                            <div className="px-6 justify-end items-center flex flex-col lg:flex-row gap-2 lg:gap-6">
+                              {o.availabilityStatus === "Out of Stock" ? (
+                                <Button
+                                  size="lg"
+                                  className="rounded-full "
+                                  disabled={true}
+                                >
+                                  Out of Stock
+                                </Button>
+                              ) : (
+                                <>
+                                  <Button
+                                    size="lg"
+                                    className="rounded-full hidden lg:grid"
+                                    onClick={() => addToCart(o)}
+                                  >
+                                    Add to cart
+                                  </Button>
+                                  <Button
+                                    size="icon"
+                                    className="rounded-full lg:hidden"
+                                    onClick={() => addToCart(o)}
+                                  >
+                                    <ShoppingBag />
+                                  </Button>
+                                </>
+                              )}
+                              <Button
+                                variant="outline"
+                                size="icon"
+                                className="rounded-full hover:bg-primary hover:text-white"
+                                onClick={() => removeFromFav(o)}
+                              >
+                                <X />
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="lg:hidden">
+                  <div className="w-full text-left border-collapse">
+                    <div className="rounded-t-xl bg-gray-100">
+                      <div className="px-4 lg:px-6 py-4 font-medium text-sm text-muted-foreground uppercase border-b border-gray-200">
+                        Product
+                      </div>
+                    </div>
+                    <div>
+                      {favItems.map((o, idx) => (
+                        <div
+                          key={o.id}
+                          className={`hover:bg-gray-100 py-4 px-4 lg:px-6 flex gap-4 ${
+                            favItems.length - 1 !== idx && "border-b"
+                          }`}
+                        >
+                          {/* h-[50px] w-[50px] lg:h-[100px] lg:w-[100px] max-w-[100px] max-h-[100px]  */}
                           <Image
                             src={`${
                               o.thumbnail
@@ -201,94 +298,109 @@ export default function WishlistLayout() {
                             alt={o.thumbnail || "image"}
                             width={100}
                             height={100}
-                            className="aspect-square rounded-none"
+                            className="h-[100px] w-[100px] aspect-square rounded-xl"
                           />
-                          <div className="font-normal text-base">{o.title}</div>
+
+                          <div className="w-full flex flex-col justify-between">
+                            <div className="space-y-2">
+                              <div className="font-normal text-base line-clamp-1">
+                                {o.title}
+                              </div>
+                              <div className="font-medium text-xs">
+                                {o.availabilityStatus}
+                              </div>
+                            </div>
+                            <div className="flex justify-between items-end">
+                              <div className="font-normal text-base">
+                                {o.discountPercentage
+                                  ? Intl.NumberFormat("en-US", {
+                                      style: "currency",
+                                      currency: "USD",
+                                    }).format(
+                                      (o.price * (100 - o.discountPercentage)) /
+                                        100
+                                    )
+                                  : Intl.NumberFormat("en-US", {
+                                      style: "currency",
+                                      currency: "USD",
+                                    }).format(o.price)}
+                              </div>
+
+                              <div className="justify-end items-center flex gap-2 lg:gap-6">
+                                {o.availabilityStatus === "Out of Stock" ? (
+                                  <Button
+                                    size="lg"
+                                    className="rounded-full "
+                                    disabled={true}
+                                  >
+                                    Out of Stock
+                                  </Button>
+                                ) : (
+                                  <>
+                                    <Button
+                                      size="lg"
+                                      className="rounded-full hidden lg:grid"
+                                      onClick={() => addToCart(o)}
+                                    >
+                                      Add to cart
+                                    </Button>
+                                    <Button
+                                      size="icon"
+                                      className="rounded-full lg:hidden"
+                                      onClick={() => addToCart(o)}
+                                    >
+                                      <ShoppingBag />
+                                    </Button>
+                                  </>
+                                )}
+                                <Button
+                                  variant="outline"
+                                  size="icon"
+                                  className="rounded-full hover:bg-primary hover:text-white"
+                                  onClick={() => removeFromFav(o)}
+                                >
+                                  <X />
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </td>
-                      <td>
-                        <div className="font-normal text-base">
-                          {o.discountPercentage
-                            ? Intl.NumberFormat("en-US", {
-                                style: "currency",
-                                currency: "USD",
-                              }).format(
-                                (o.price * (100 - o.discountPercentage)) / 100
-                              )
-                            : Intl.NumberFormat("en-US", {
-                                style: "currency",
-                                currency: "USD",
-                              }).format(o.price)}
-                        </div>
-                      </td>
-                      <td>
-                        <div className="font-medium text-base">
-                          {o.availabilityStatus}
-                        </div>
-                      </td>
-                      <td>
-                        <div className="px-6 justify-end items-center flex gap-6">
-                          {o.availabilityStatus === "Out of Stock" ? (
-                            <Button
-                              size="lg"
-                              className="rounded-full "
-                              disabled={true}
-                            >
-                              Out of Stock
-                            </Button>
-                          ) : (
-                            <Button
-                              size="lg"
-                              className="rounded-full "
-                              onClick={() => addToCart(o)}
-                            >
-                              Add to cart
-                            </Button>
-                          )}
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+              {favItems.length !== 0 && (
+                <CardFooter className="py-4 px-4 lg:px-6 border-t">
+                  <div className="w-full flex justify-end">
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
                           <Button
                             variant="outline"
                             size="icon"
-                            className="rounded-full hover:bg-primary hover:text-white"
-                            onClick={() => removeFromFav(o)}
+                            className="hover:bg-primary/70 hover:text-white"
+                            onClick={clearAllFav}
                           >
-                            <X />
+                            <Trash />
                           </Button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </CardContent>
-            {favItems.length !== 0 && (
-              <CardFooter className="py-4 px-6 border-t">
-                <div className="w-full flex justify-end">
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="outline"
-                          size="icon"
-                          className="hover:bg-primary/70 hover:text-white"
-                          onClick={clearAllFav}
-                        >
-                          <Trash />
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Remove all from Wishlist</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                </div>
-              </CardFooter>
-            )}
-          </Card>
-        )}
-      </div>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Remove all from Wishlist</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                </CardFooter>
+              )}
+            </Card>
+          )}
+        </div>
       ) : (
-        <div className="py-[80px] flex items-center justify-center">Wishlist is empty</div>
-      )} 
+        <div className="py-[80px] flex items-center justify-center">
+          Wishlist is empty
+        </div>
+      )}
     </main>
   );
 }
