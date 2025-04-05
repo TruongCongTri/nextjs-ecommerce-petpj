@@ -24,5 +24,5 @@ export default async function PostPage({
   if (!fetchPost.success) {
     return <NotFoundLayout />;
   }
-  return <Container>{fetchPost?.data?.title}</Container>;
+  return <Container>{fetchPost?.data?.title} test</Container>;
 }
