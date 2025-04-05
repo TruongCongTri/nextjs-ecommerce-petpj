@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Poly:ital@0;1&display=swap");
+h1 {
+  font-family: "Poly", serif;
+  font-style: italic;
+}
+
+h1 {
+  color: --background;
+  /* font-size: 5rem;
+  font-weight: 10; */
+}
+
+h1 span {
+  color: #7dd3fc;
+  position: relative;
+}
+h1 span::before {
+  content: "";
+  height: 80px;
+  width: 2px;
+  position: absolute;
+  top: 50%;
+  right: -8px;
+  background: #7dd3fc;
+  transform: translateY(-45%);
+  animation: blink 0.7s infinite;
+}
+h1 span.stop-blinking::before {
+  animation: none;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.text {
+  /* font-size: 180px;
+  font-weight: 700; */
+  background: url("https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif")
+    repeat;
+  background-position: 40% 50%;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: -4px;
+  text-shadow: 3px 3px 4px --tittle-shadow;
+  font-family: "Raleway", sans-serif;
+}
+/* marquee */
+/* .marquee {
+  overflow: hidden;
+  display: flex;
+}
+
+.marquee h1{
+  font-size: 5em;
+  white-space: nowrap;
+  text-transform: uppercase
+} */
+
+/* @media screen and (prefers-color-scheme: dark) {
+  h1 {
+    color: white;
+  }
+  .text {
+    background: url("https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif")
+      repeat;
+    background-position: 40% 50%;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: -4px;
+    text-shadow: 3px 3px 4px rgba(255, 255, 255, 0.2);
+    font-family: "Raleway", sans-serif;
+  }
+} */

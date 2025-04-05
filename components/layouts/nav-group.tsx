@@ -84,7 +84,7 @@ export function NavGroup({
                     <Link
                       href={item.url}
                       className={`hover:bg-secondary ${
-                        pathname === item.url && `bg-primary text-white`
+                        pathname === item.url && `bg-primary text-white dark:text-black`
                       }`}
                     >
                       {item.icon && <item.icon />}

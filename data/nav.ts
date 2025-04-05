@@ -9,7 +9,8 @@ import {
   Pencil,
   MessagesSquare,
 } from "lucide-react";
-import { siteConfig } from "./site";
+import { siteConfig } from "./site-config";
+
 
 export const data = {
   teams: [
@@ -31,7 +32,7 @@ export const data = {
   ],
   navMain: [
     {
-      title: "Dashboard",
+      title: "Home",
       url: `/`,
       icon: LayoutDashboard,
     },
@@ -54,22 +55,22 @@ export const data = {
     //   },
     {
       title: "Listening",
-      url: `${siteConfig.listening.listening}`,
+      url: `${siteConfig.topic.listening}`,
       icon: Headphones,
     },
     {
       title: "Reading",
-      url: `${siteConfig.reading.reading}`,
+      url: `${siteConfig.topic.reading}`,
       icon: BookOpenText,
     },
     {
       title: "Writing",
-      url: `${siteConfig.writing.writing}`,
+      url: `${siteConfig.topic.writing}`,
       icon: Pencil,
     },
     {
       title: "Speaking",
-      url: `${siteConfig.speaking.speaking}`,
+      url: `${siteConfig.topic.speaking}`,
       icon: MessagesSquare,
     },
   ],

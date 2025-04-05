@@ -11,9 +11,10 @@ import { TeamSwitcher } from "./team-switcher";
 import { NavGroup } from "./nav-group";
 import { data } from "@/data/nav";
 
+export function AppSidebar({
+  ...props
+}: React.ComponentProps<typeof Sidebar>) {
 
-
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -22,9 +23,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavGroup items={data.navMain} />
       </SidebarContent>
-      <SidebarFooter>
-        {/* <NavUser user={data.user} /> */}
-      </SidebarFooter>
+      <SidebarFooter>{/* <NavUser user={data.user} /> */}</SidebarFooter>
       <SidebarRail />
     </Sidebar>
   );
