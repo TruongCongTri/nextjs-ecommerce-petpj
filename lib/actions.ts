@@ -42,7 +42,11 @@ export async function createPost(data: CreatePostInputProp) {
     };
   }
 }
-export async function getPostListByCategoryId(cateId: string) {
+export async function getPostListByCategoryId(
+  cateId: string,
+  type: string,
+  query: string
+) {
   try {
     // Validate the input data
     const post = await prisma.post.findMany({
@@ -60,7 +64,15 @@ export async function getPostListByCategoryId(cateId: string) {
     if (!post) {
       return { success: false, message: "Post not found" };
     }
-    return { success: true, data: post };
+    if (type !== "DOCUMENTATION" && type !== "PRACTICE") {
+      return { success: false, message: "Wrong post type not found" };
+    }
+    const postList = post.filter((o) => o.type === type);
+    if (query === "") {
+      return { success: true, data: postList };
+    }
+    const filteredPosts = post.filter((o) => o.title.includes(query));
+    return { success: true, data: filteredPosts };
   } catch (error) {
     // Handle any errors that occur during the post creation
     console.error("Database Error:", error);
@@ -99,7 +111,31 @@ export async function getPostByPostSlugByCateId(
     return { success: false, message: "Post not found" };
   }
 }
-
+export async function getSinglePost(postSlug: string) {
+  try {
+    // Validate the input data
+    const post = await prisma.post.findUnique({
+      where: {
+        slug: postSlug,
+      },
+      include: {
+        author: true, // Include the author information
+        category: true,
+      },
+    });
+    if (!post) {
+      return { success: false, message: "Post not found" };
+    }
+    return { success: true, data: post };
+  } catch (error) {
+    // Handle any errors that occur during the post creation
+    console.error("Database Error:", error);
+    // If an error occurs,
+    // return success status as false
+    // with an error message
+    return { success: false, message: "Post not found" };
+  }
+}
 export async function getPostForEditing(postSlug: string) {
   try {
     const { userId } = await auth();
@@ -114,6 +150,9 @@ export async function getPostForEditing(postSlug: string) {
     const post = await prisma.post.findUnique({
       where: {
         slug: postSlug,
+      },
+      include: {
+        category: true,
       },
     });
     // Check if the post exists
@@ -248,7 +287,6 @@ export async function deletePost(postId: string) {
   }
 }
 
-
 // categories
 export async function createCategory(data: CreateCategoryInputProp) {
   try {
@@ -285,6 +323,7 @@ export async function createCategory(data: CreateCategoryInputProp) {
     };
   }
 }
+
 export async function getCategoryByCategorySlug(cateSlug: string) {
   try {
     // Validate the input data

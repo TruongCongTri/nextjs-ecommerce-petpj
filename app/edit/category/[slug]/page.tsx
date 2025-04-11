@@ -102,7 +102,7 @@ export default function EditCategoryPage({
     <Container>
       <div className="mb-6 ">
         <Link href={`/edit/category`}>
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" disabled={!isLoaded || isLoading || isSubmitting}>
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back
           </Button>
@@ -119,6 +119,7 @@ export default function EditCategoryPage({
             onChange={(e) => setTitle(e.target.value)}
             className="bg-slate-50"
             required
+            disabled={isLoading || isSubmitting}
           />
         </div>
         <div className="space-y-2">
@@ -128,7 +129,7 @@ export default function EditCategoryPage({
             placeholder="Enter category slug"
             value={slug}
             className="bg-slate-50"
-            disabled={true}
+            disabled={true || isLoading || isSubmitting}
           />
         </div>
         <div className="space-y-4">
@@ -140,6 +141,7 @@ export default function EditCategoryPage({
             onChange={(e) => setThumbnail(e.target.value)}
             placeholder="Enter category image"
             className="bg-slate-50"
+            disabled={isLoading || isSubmitting}
           />
         </div>
         <div>
@@ -147,12 +149,13 @@ export default function EditCategoryPage({
             src={thumbnail ? thumbnail : `/images/placeholder.svg`}
             alt={""}
             width={200}
-            height={200}
-            className="aspect-square rounded-xl"
+            height={300}
+            className="w-[200px] h-[300px] rounded-xl"
           />
         </div>
-        <Button type="submit" disabled={isSubmitting}>
+        <Button type="submit" disabled={!isLoaded || isLoading || isSubmitting}>
           {isSubmitting ? "Saving..." : "Save Changes"}
+          {isLoading && "Loading..."}
         </Button>
       </form>
     </Container>

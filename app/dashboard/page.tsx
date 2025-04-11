@@ -9,7 +9,7 @@ export default async function DashboardPage() {
   if (!userId) {
     redirect("/");
   }
-  redirect(`${siteConfig.dashboard.editPost}`);
+  redirect(`${siteConfig.dashboard.viewPost}`);
   return (
     <Container>
       <div className="flex items-center justify-between mb-8">

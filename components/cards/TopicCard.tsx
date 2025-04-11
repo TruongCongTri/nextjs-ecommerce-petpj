@@ -50,8 +50,8 @@ export default function TopicCard({
         <div className="flex justify-between items-center w-full h-full">
           <div className="flex flex-col h-full justify-between">
             <Link
-              href={`/${item.slug}`}
-              className={`font-medium text-3xl p-1 rounded-xl ${
+              href={`/${item.slug}/documentation`}
+              className={`font-medium text-3xl p-1 rounded-xl w-fit ${
                 variant === "dark" && cardVariants.title.dark
               } 
       ${variant === "bright" && cardVariants.title.bright}
@@ -85,7 +85,7 @@ export default function TopicCard({
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <div className="flex flex-col gap-2">
-                  <Link href={`${item.slug}`}>Documents</Link>
+                  <Link href={`${item.slug}/documentation`}>Documents</Link>
                   <Link href={`${item.slug}/practice`}>Practices</Link>
                 </div>
               </CollapsibleContent>
@@ -100,6 +100,8 @@ export default function TopicCard({
             width={200}
             height={300}
             alt={item.slug}
+            placeholder="blur"
+            blurDataURL="/images/placeholder.svg"
             className="w-[200px] h-[300px] rounded-xl"
           />
         </div>

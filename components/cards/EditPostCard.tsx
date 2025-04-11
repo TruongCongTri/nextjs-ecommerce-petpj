@@ -41,7 +41,7 @@ export default function EditPostCard({ post }: { post: Post }) {
 
         <div className="group-hover:text-primary">
           <Link
-            href={`${siteConfig.topic.listening}/slug`}
+            href={`${siteConfig.dashboard.viewPost}/${post.slug}`}
             className="capitalize tracking-tight font-medium text-3xl cursor-pointer"
           >
             {post.title}
@@ -53,7 +53,7 @@ export default function EditPostCard({ post }: { post: Post }) {
             className="flex gap-2 items-center w-fit mt-auto cursor-pointer inline-flex"
             asChild
           >
-            <Link href={`/${post.category.slug}/${post.slug}`}>
+            <Link href={`${siteConfig.dashboard.viewPost}/${post.slug}`}>
               <div className="order-1 group-hover:order-2">View</div>
               <Eye className="order-2 group-hover:order-1" />
             </Link>
@@ -62,7 +62,7 @@ export default function EditPostCard({ post }: { post: Post }) {
             className="flex gap-2 items-center w-fit mt-auto cursor-pointer inline-flex"
             asChild
           >
-            <Link href={`/edit/post/${post.slug}`}>
+            <Link href={`${siteConfig.dashboard.editPost}/${post.slug}`}>
               <div className="order-1 group-hover:order-2">Edit</div>
               <Edit className="order-2 group-hover:order-1" />
             </Link>

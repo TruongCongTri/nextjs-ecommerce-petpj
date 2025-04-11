@@ -3,7 +3,6 @@ import Image from "next/image";
 
 import { Card, CardContent } from "../ui/card";
 import Link from "next/link";
-import { siteConfig } from "@/data/site-config";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 import { Separator } from "../ui/separator";
@@ -40,7 +39,7 @@ export default function PostCard({ post }: { post: Post }) {
 
         <div className="group-hover:text-primary">
           <Link
-            href={`${siteConfig.topic.listening}/${post.slug}`}
+            href={`/${post.category.slug}/${post.type.toLowerCase() || "documentation"}/${post.slug}`}
             className="capitalize tracking-tight font-medium text-3xl cursor-pointer"
           >
             {post.title}
@@ -65,7 +64,7 @@ export default function PostCard({ post }: { post: Post }) {
           className="flex gap-2 items-center w-fit mt-auto cursor-pointer inline-flex"
           asChild
         >
-          <Link href={`${siteConfig.topic.listening}/${post.slug}}`}>
+          <Link href={`/${post.category.slug}/${post.type.toLowerCase() || "documentation"}/${post.slug}`}>
             <div className="order-1 group-hover:order-2">Read more</div>
             <ArrowRight className="order-2 group-hover:order-1" />
           </Link>

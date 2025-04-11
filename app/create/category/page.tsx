@@ -60,7 +60,7 @@ export default function CreateCategoryPage() {
   return (
     <Container>
       <div className="mb-6">
-        <Button variant="outline" size="sm" disabled={!isLoaded} asChild>
+        <Button variant="outline" size="sm" disabled={!isLoaded || isSubmitting} asChild>
           <Link href="/">
             <ArrowLeft className="mr-2 w-4 h-4" />
             Back
@@ -78,6 +78,7 @@ export default function CreateCategoryPage() {
             placeholder="Enter category title"
             className="bg-slate-50"
             required
+            disabled={isSubmitting}
           />
         </div>
         <div className="space-y-4">
@@ -89,6 +90,7 @@ export default function CreateCategoryPage() {
             placeholder="Enter category slug"
             className="bg-slate-50"
             required
+            disabled={isSubmitting}
           />
         </div>
         <div className="space-y-4">
@@ -100,6 +102,7 @@ export default function CreateCategoryPage() {
             onChange={(e) => setImage(e.target.value)}
             placeholder="Enter category image"
             className="bg-slate-50"
+            disabled={isSubmitting}
           />
         </div>
         <div>
@@ -107,8 +110,8 @@ export default function CreateCategoryPage() {
             src={image ? image : `/images/placeholder.svg`}
             alt={""}
             width={200}
-            height={200}
-            className="aspect-square rounded-xl"
+            height={300}
+            className="w-[200px] h-[300px] rounded-xl"
           />
         </div>
         <Button type="submit" disabled={isSubmitting}>

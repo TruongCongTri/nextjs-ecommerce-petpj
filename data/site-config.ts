@@ -17,6 +17,8 @@ export const siteConfig = {
   },
   dashboard: {
     dashboard: "/dashboard",
+    viewCategory: "/dashboard/category",
+    viewPost: "/dashboard/post",
     create: "/create",
     createCategory: "/create/category",
     createPost: "/create/post",
